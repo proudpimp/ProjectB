@@ -1,4 +1,3 @@
- 
 public class TafelReservering
 {
     public string GastNaam { get; set; }
