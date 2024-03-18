@@ -100,7 +100,31 @@
                     break;
                 
                 case "3":
-                    Console.WriteLine();
+                    Console.WriteLine("Reservering Wijzigen");
+                    Console.Write("Voer uw naam in voor de reservering die u wilt wijzigen: ");
+                    string zoekNaam = Console.ReadLine();
+
+                    string folderPath1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    string fileName = $"Reserveringen_{zoekNaam}_bevestiging.txt";
+                    string fullPath1 = Path.Combine(folderPath1, fileName);
+
+                    if (File.Exists(fullPath1))
+                    {
+                        string currentDetails = File.ReadAllText(fullPath1);
+                        Console.WriteLine("Uw huidige reservering details:\n" + currentDetails);
+
+                        Console.Write("Voer de nieuwe datum en tijd van de reservering in (yyyy-mm-dd hh:mm): ");
+                        string nieuweDatumTijd = Console.ReadLine();
+
+                        string updatedDetails = currentDetails.Replace(currentDetails.Substring(currentDetails.IndexOf("Datum en tijd: "), currentDetails.IndexOf("\nTafeltype: ") - currentDetails.IndexOf("Datum en tijd: ")), $"Datum en tijd: {nieuweDatumTijd}");
+
+                        File.WriteAllText(fullPath1, updatedDetails);
+                        Console.WriteLine("Uw reservering is bijgewerkt.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Geen reservering gevonden onder deze naam.");
+                    }
                     break;
 
                 case "4":
