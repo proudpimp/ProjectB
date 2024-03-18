@@ -55,7 +55,6 @@
                     break;
 
                 case "4":
-                    Console.WriteLine("Contactinfo: ");
                     RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","09:00/20:00, Mon/Sat");
                     System.Console.WriteLine(restaurant.Info());
                     break;
