@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 class Program
 {
@@ -37,7 +38,7 @@ class Program
                     while(true)
                     {
                     Console.WriteLine("Wilt U een extra notitie maken bij U reservering? Y/N  ");
-                    string notitieAntw = Console.ReadLine()!; 
+                    string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
                         {  
                            Console.WriteLine("---------------------------------");
@@ -56,13 +57,14 @@ class Program
 
                         else if (notitieAntw == "N")
                         {
-                            continue; 
+                            break; 
                         }
 
                         else
                         {
                             Console.WriteLine("Ongeldige Invoer. Voer Y of N in.");
                         }
+                        
                       
                     }
 
