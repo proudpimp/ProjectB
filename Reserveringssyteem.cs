@@ -17,6 +17,16 @@ public class Reserveringen
         var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType);
         reserveringen.Add(nieuweReservering);
         Console.WriteLine("Reservering succesvol toegevoegd voor " + gastNaam);
+        string bestandsPad = @"C:\Users\oktay\OneDrive\Documents\les\" + gastNaam + "_bevestiging.txt";
+        string bevestigingTekst = $"Reserveringsbevestiging voor {gastNaam}\n" +
+                              $"Aantal personen: {aantalPersonen}\n" +
+                              $"Datum en tijd: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
+                              $"Tafeltype: {tafelType}\n\n" +
+                              "Dank u wel voor uw reservering. Wij kijken uit naar uw bezoek.";
+
+        File.WriteAllText(bestandsPad, bevestigingTekst);
+
+    Console.WriteLine("De reserveringsbevestiging is succesvol opgeslagen voor " + gastNaam + ".");
         return true;
     }
 
