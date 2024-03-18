@@ -1,8 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-
-class Program
+﻿class Program
 {
     public static void Main()
     {
@@ -82,6 +78,25 @@ class Program
 
                 case "2":
                     Console.WriteLine("Reservering Annuleren");
+
+                    Console.Write("Voer de naam in waaronder de reservering is gemaakt: ");
+                    string gastNaam = Console.ReadLine();
+
+                    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                    string fileNamePattern = $"Reserveringen_{gastNaam}_bevestiging.txt";
+
+                    string fullPath = Path.Combine(folderPath, fileNamePattern);
+
+                    if (File.Exists(fullPath))
+                    {
+                        File.Delete(fullPath);
+                        Console.WriteLine("Uw reservering is succesvol geannuleerd.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Er is geen reservering gevonden onder de opgegeven naam.");
+                    }
                     break;
                 
                 case "3":
