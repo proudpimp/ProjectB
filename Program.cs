@@ -9,7 +9,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("\nWelkom bij Jakes's restaurant");
+            Console.WriteLine("\nWelkom bij Jake's restaurant");
             Console.WriteLine("1) Reserveren");
             Console.WriteLine("2) Reservering Annuleren");
             Console.WriteLine("3) Reservering Wijzigen");
