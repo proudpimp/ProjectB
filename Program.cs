@@ -8,11 +8,11 @@
            
             Console.WriteLine("\nWelkom bij Jakes's restaurant");
            
-            Console.WriteLine("1. Reserveren");
-            Console.WriteLine("2. Reservering Annuleren");
-            Console.WriteLine("3. Reservering Wijzigen");
-            Console.WriteLine("4. Contactinfo");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("1) Reserveren");
+            Console.WriteLine("2) Reservering Annuleren");
+            Console.WriteLine("3) Reservering Wijzigen");
+            Console.WriteLine("4) Contactinfo");
+            Console.WriteLine("5) Quit");
 
            
             Console.Write("Maak een keuze: ");
