@@ -6,12 +6,13 @@
         while (true)
         {
            
-            Console.WriteLine("Welkom bij Jakes's restaurant");
+            Console.WriteLine("\nWelkom bij Jakes's restaurant");
            
             Console.WriteLine("1. Reserveren");
             Console.WriteLine("2. Reservering Annuleren");
-            Console.WriteLine("3. Contactinfo");
-            Console.WriteLine("4. Quit");
+            Console.WriteLine("3. Reservering Wijzigen");
+            Console.WriteLine("4. Contactinfo");
+            Console.WriteLine("5. Quit");
 
            
             Console.Write("Maak een keuze: ");
@@ -48,14 +49,18 @@
                 case "2":
                     Console.WriteLine("Reservering Annuleren");
                     break;
-
+                
                 case "3":
-                    Console.WriteLine("Contactinfo");
+                    Console.WriteLine();
+                    break;
+
+                case "4":
+                    Console.WriteLine("Contactinfo: ");
                     RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","09:00/20:00, Mon/Sat");
                     System.Console.WriteLine(restaurant.Info());
                     break;
 
-                case "4":
+                case "5":
                     Console.WriteLine("Quit");
                     return; 
 
