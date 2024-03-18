@@ -1,4 +1,7 @@
-﻿class Program
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
+
+class Program
 {
     public static void Main()
     {
@@ -30,6 +33,39 @@
                         Console.WriteLine("Ongeldige invoer, probeer het opnieuw.");
                         Console.Write("Voer het aantal personen in: ");
                     }
+
+                    while(true)
+                    {
+                    Console.WriteLine("Wilt U een extra notitie maken bij U reservering? Y/N  ");
+                    string notitieAntw = Console.ReadLine()!; 
+                        if (notitieAntw == "Y")
+                        {  
+                           Console.WriteLine("---------------------------------");
+                           Console.WriteLine("Maak hier uw notitie:"); 
+                           Console.WriteLine("---------------------------------");
+                           string notitieZelf = Console.ReadLine()!;
+                           Console.WriteLine("bedankt voor het aangeven, dit is jouw notitie"); 
+                           Console.WriteLine("---------------------------------");
+                           Console.WriteLine($"{notitieZelf}"); 
+                           Console.WriteLine("---------------------------------");
+                           break;
+                          
+
+                        
+                        }
+
+                        else if (notitieAntw == "N")
+                        {
+                            continue; 
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Ongeldige Invoer. Voer Y of N in.");
+                        }
+                      
+                    }
+
 
                     Console.Write("Voer de datum en tijd van de reservering in (yyyy-mm-dd hh:mm): ");
                     DateTime datumTijd;
