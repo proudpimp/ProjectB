@@ -33,7 +33,7 @@
 
                     while(true)
                     {
-                    Console.WriteLine("Wilt U een extra notitie maken bij U reservering? Y/N  ");
+                    Console.WriteLine("Wilt U een extra notitie maken bij uw reservering? Y/N  ");
                     string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
                         {  
@@ -41,7 +41,7 @@
                            Console.WriteLine("Maak hier uw notitie:"); 
                            Console.WriteLine("---------------------------------");
                            string notitieZelf = Console.ReadLine()!;
-                           Console.WriteLine("bedankt voor het aangeven, dit is jouw notitie"); 
+                           Console.WriteLine("Bedankt voor het aangeven, dit is uw notitie:"); 
                            Console.WriteLine("---------------------------------");
                            Console.WriteLine($"{notitieZelf}"); 
                            Console.WriteLine("---------------------------------");
