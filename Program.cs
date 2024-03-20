@@ -5,43 +5,43 @@
 
         while (true)
         {
-            Console.WriteLine("\nWelkom bij Jake's restaurant");
-            Console.WriteLine("1) Reserveren");
-            Console.WriteLine("2) Reservering Annuleren");
-            Console.WriteLine("3) Reservering Wijzigen");
+            Console.WriteLine("\nWelcome by Jake's restaurant");
+            Console.WriteLine("1) Make a reservation");
+            Console.WriteLine("2) Cancelling reservation");
+            Console.WriteLine("3) Adjust reservation");
             Console.WriteLine("4) Contactinfo");
             Console.WriteLine("5) Quit");
-            Console.Write("Maak een keuze: ");
+            Console.Write("Make a choice: ");
             string choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("Reservering Maken");
+                    Console.WriteLine("Make a reservation");
                     var manager = new Reserveringen();
 
-                    Console.Write("Voer uw naam in: ");
+                    Console.Write("Fill in your name: ");
                     string naam = Console.ReadLine();
 
-                    Console.Write("Voer het aantal personen in: ");
+                    Console.Write("How many people: ");
                     int aantalPersonen;
                     while (!int.TryParse(Console.ReadLine(), out aantalPersonen) || aantalPersonen <= 0)
                     {
-                        Console.WriteLine("Ongeldige invoer, probeer het opnieuw.");
-                        Console.Write("Voer het aantal personen in: ");
+                        Console.WriteLine("Invalid input, try again.");
+                        Console.Write("How many people: ");
                     }
 
                     while(true)
                     {
-                    Console.WriteLine("Wilt U een extra notitie maken bij uw reservering? Y/N  ");
+                    Console.WriteLine("Do you want to note something? Y/N  ");
                     string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
                         {  
                            Console.WriteLine("---------------------------------");
-                           Console.WriteLine("Maak hier uw notitie:"); 
+                           Console.WriteLine("Write your note:"); 
                            Console.WriteLine("---------------------------------");
                            string notitieZelf = Console.ReadLine()!;
-                           Console.WriteLine("Bedankt voor het aangeven, dit is uw notitie:"); 
+                           Console.WriteLine("Thanks for pointing it out, this is your note:"); 
                            Console.WriteLine("---------------------------------");
                            Console.WriteLine($"{notitieZelf}"); 
                            Console.WriteLine("---------------------------------");
@@ -58,72 +58,72 @@
 
                         else
                         {
-                            Console.WriteLine("Ongeldige Invoer. Voer Y of N in.");
+                            Console.WriteLine("Invalid input. fill in Y or N.");
                         }
                         
                       
                     }
 
 
-                    Console.Write("Voer de datum en tijd van de reservering in (yyyy-mm-dd hh:mm): ");
+                    Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     DateTime datumTijd;
                     while (!DateTime.TryParse(Console.ReadLine(), out datumTijd))
                     {
-                        Console.WriteLine("Ongeldige datum, probeer het opnieuw.");
-                        Console.Write("Voer de datum en tijd van de reservering in (yyyy-mm-dd hh:mm): ");
+                        Console.WriteLine("Invalid date, try again");
+                        Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     }
 
                     manager.VoegReserveringToe(naam, aantalPersonen, datumTijd);
                     break;
 
                 case "2":
-                    Console.WriteLine("Reservering Annuleren");
+                    Console.WriteLine("Cancel reservation");
 
-                    Console.Write("Voer de naam in waaronder de reservering is gemaakt: ");
+                    Console.Write("Enter the name of the person who made the reservation: ");
                     string gastNaam = Console.ReadLine();
 
                     string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                    string fileNamePattern = $"Reserveringen_{gastNaam}_bevestiging.txt";
+                    string fileNamePattern = $"Reservation_{gastNaam}_Confirmation.txt";
 
                     string fullPath = Path.Combine(folderPath, fileNamePattern);
 
                     if (File.Exists(fullPath))
                     {
                         File.Delete(fullPath);
-                        Console.WriteLine("Uw reservering is succesvol geannuleerd.");
+                        Console.WriteLine("The reservation is succesfully cancelled");
                     }
                     else
                     {
-                        Console.WriteLine("Er is geen reservering gevonden onder de opgegeven naam.");
+                        Console.WriteLine("No reservation found with the given name. ");
                     }
                     break;
                 
                 case "3":
-                    Console.WriteLine("Reservering Wijzigen");
-                    Console.Write("Voer uw naam in voor de reservering die u wilt wijzigen: ");
+                    Console.WriteLine("Adjust reservation");
+                    Console.Write("Enter the name of the person who made the reservation: ");
                     string zoekNaam = Console.ReadLine();
 
                     string folderPath1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    string fileName = $"Reserveringen_{zoekNaam}_bevestiging.txt";
+                    string fileName = $"Reservation_{zoekNaam}_Confirmation.txt";
                     string fullPath1 = Path.Combine(folderPath1, fileName);
 
                     if (File.Exists(fullPath1))
                     {
                         string currentDetails = File.ReadAllText(fullPath1);
-                        Console.WriteLine("Uw huidige reservering details:\n" + currentDetails);
+                        Console.WriteLine("Your current reservation details:\n" + currentDetails);
 
-                        Console.Write("Voer de nieuwe datum en tijd van de reservering in (yyyy-mm-dd hh:mm): ");
+                        Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
                         string nieuweDatumTijd = Console.ReadLine();
 
-                        string updatedDetails = currentDetails.Replace(currentDetails.Substring(currentDetails.IndexOf("Datum en tijd: "), currentDetails.IndexOf("\nTafeltype: ") - currentDetails.IndexOf("Datum en tijd: ")), $"Datum en tijd: {nieuweDatumTijd}");
+                        string updatedDetails = currentDetails.Replace(currentDetails.Substring(currentDetails.IndexOf("Date and time: "), currentDetails.IndexOf("\nTabeltype: ") - currentDetails.IndexOf("Date and time: ")), $"Datum en tijd: {nieuweDatumTijd}");
 
                         File.WriteAllText(fullPath1, updatedDetails);
-                        Console.WriteLine("Uw reservering is bijgewerkt.");
+                        Console.WriteLine("The reservation got adjusted.");
                     }
                     else
                     {
-                        Console.WriteLine("Geen reservering gevonden onder deze naam.");
+                        Console.WriteLine("No reservation found under this name. ");
                     }
                     break;
 
@@ -137,7 +137,7 @@
                     return; 
 
                 default:
-                    Console.WriteLine("Ongeldige keuze, kies de goede optie");
+                    Console.WriteLine("Invalid choice, Choose a valid option");
                     break;
             }
         }

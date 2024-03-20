@@ -12,6 +12,6 @@ class RestaurantInfo
         this.PhoneNumber = PhoneNumber;
         this.Openingstijden = Openingstijden;
     }
-    public string Info() => $"Contact Info:\nAdres: {Adres}\nPostcode: {Postcode}\nNumber: {PhoneNumber}\nOpeningstijden: {Openingstijden}";
+    public string Info() => $"Contact Info:\nAdress: {Adres}\nZipcode: {Postcode}\nNumber: {PhoneNumber}\nOpening/Closing times: {Openingstijden}";
     
 }

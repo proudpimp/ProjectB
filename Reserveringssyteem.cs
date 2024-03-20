@@ -10,33 +10,33 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     int tafelType = BepaalTafelType(aantalPersonen);
     if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
     {
-        Console.WriteLine("Helaas, er is geen beschikbaarheid op de geselecteerde datum en tijd voor het aantal personen.");
+        Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
         return false;
     }
     
     var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType);
     reserveringen.Add(nieuweReservering);
-    Console.WriteLine("Reservering succesvol toegevoegd voor " + gastNaam);
+    Console.WriteLine("Reservation successfully added for " + gastNaam);
 
     string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    string fileName = $"Reserveringen_{gastNaam}_bevestiging.txt";
+    string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
     string fullPath = Path.Combine(folderPath, fileName);
 
-    string bevestigingTekst = "Hartelijk dank voor uw reservering bij Jake's Restaurant. Wij kijken ernaar uit om u te verwelkomen! \nHieronder vindt u de details van uw reservering:\n\n" +
-                            $"Reserveringsbevestiging voor {gastNaam}\n" +
-                            $"Aantal personen: {aantalPersonen}\n" +
-                            $"Datum en tijd: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
-                            $"Tafeltype: {tafelType}\n";
+    string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
+                            $"Reservationc for {gastNaam}\n" +
+                            $"Amount of people: {aantalPersonen}\n" +
+                            $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
+                            $"Tabeltype: {tafelType}\n";
 
 
     try
     {
         File.WriteAllText(fullPath, bevestigingTekst);
-        Console.WriteLine("De reserveringsbevestiging is succesvol opgeslagen voor " + gastNaam + " in " + fullPath + ".");
+        Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
     }
     catch (Exception ex)
     {
-        Console.WriteLine("Er is een fout opgetreden bij het opslaan van de reserveringsbevestiging: " + ex.Message);
+        Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
     }
 
     return true;
