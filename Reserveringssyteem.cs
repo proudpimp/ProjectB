@@ -1,9 +1,20 @@
+using Newtonsoft.Json;
+
 public class Reserveringen
 {
     private List<TafelReservering> reserveringen = new List<TafelReservering>();
+    private static readonly string JsonFilePath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+        "GitHub", "ProjectB", "Reservations.json");
+
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
+
+        public Reserveringen()
+    {
+        LoadReservationsFromJson();
+    }
 
 public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd)
 {
@@ -38,7 +49,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     {
         Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
     }
-
+    SaveReservationsToJson();
     return true;
 }
 
@@ -62,5 +73,19 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         }
 
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
+    }
+    public void SaveReservationsToJson()
+    {
+        string json = JsonConvert.SerializeObject(reserveringen, Formatting.Indented);
+        File.WriteAllText(JsonFilePath, json);
+    }
+
+    private void LoadReservationsFromJson()
+    {
+        if (File.Exists(JsonFilePath))
+        {
+            string json = File.ReadAllText(JsonFilePath);
+            reserveringen = JsonConvert.DeserializeObject<List<TafelReservering>>(json) ?? new List<TafelReservering>();
+        }
     }
 }
