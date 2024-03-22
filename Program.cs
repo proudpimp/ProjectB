@@ -10,7 +10,8 @@
             Console.WriteLine("2) Cancelling reservation");
             Console.WriteLine("3) Adjust reservation");
             Console.WriteLine("4) Contactinfo");
-            Console.WriteLine("5) Quit");
+            Console.WriteLine("5) Table details");
+            Console.WriteLine("6) Quit");
             Console.Write("Make a choice: ");
             string choice = Console.ReadLine();
 
@@ -133,8 +134,15 @@
                     break;
 
                 case "5":
+                    Console.WriteLine("We have:");
+                    Console.WriteLine("- Eight two-person tables,");
+                    Console.WriteLine("- Five four-person tables,");
+                    Console.WriteLine("- Two six-person tables.");
+                    break;
+
+                case "6":
                     Console.WriteLine("Quit");
-                    return; 
+                    return;
 
                 default:
                     Console.WriteLine("Invalid choice, Choose a valid option");
