@@ -11,7 +11,7 @@ public class Reserveringen
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
 
-        public Reserveringen()
+    public Reserveringen()
     {
         LoadReservationsFromJson();
     }
@@ -88,4 +88,11 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
             reserveringen = JsonConvert.DeserializeObject<List<TafelReservering>>(json) ?? new List<TafelReservering>();
         }
     }
+
+    public TafelReservering? GetReservationByName(string guestName)
+    {
+        return reserveringen.FirstOrDefault(r => r.GastNaam.Equals(guestName, StringComparison.OrdinalIgnoreCase));
+    }
+
+
 }

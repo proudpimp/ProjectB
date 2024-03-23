@@ -1,4 +1,7 @@
-﻿class Program
+﻿using Newtonsoft.Json;
+
+
+class Program
 {
     public static void Main()
     {
@@ -105,22 +108,20 @@
                     Console.Write("Enter the name of the person who made the reservation: ");
                     string zoekNaam = Console.ReadLine();
 
-                    string folderPath1 = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    string fileName = $"Reservation_{zoekNaam}_Confirmation.txt";
-                    string fullPath1 = Path.Combine(folderPath1, fileName);
+                    Reserveringen reserveringen = new Reserveringen();
+                    var reservation = reserveringen.GetReservationByName(zoekNaam);
 
-                    if (File.Exists(fullPath1))
+                    if (reservation != null)
                     {
-                        string currentDetails = File.ReadAllText(fullPath1);
-                        Console.WriteLine("Your current reservation details:\n" + currentDetails);
+                        Console.WriteLine("Your current reservation details:\n" + JsonConvert.SerializeObject(reservation, Formatting.Indented));
 
                         Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
                         string nieuweDatumTijd = Console.ReadLine();
 
-                        string updatedDetails = currentDetails.Replace(currentDetails.Substring(currentDetails.IndexOf("Date and time: "), currentDetails.IndexOf("\nTabeltype: ") - currentDetails.IndexOf("Date and time: ")), $"Datum en tijd: {nieuweDatumTijd}");
+                        reservation.DatumTijd = DateTime.ParseExact(nieuweDatumTijd, "yyyy-MM-dd HH:mm", null);
+                        reserveringen.SaveReservationsToJson();
 
-                        File.WriteAllText(fullPath1, updatedDetails);
-                        Console.WriteLine("The reservation got adjusted.");
+                        Console.WriteLine("The reservation has been adjusted.");
                     }
                     else
                     {
