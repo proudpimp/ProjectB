@@ -74,6 +74,20 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
 
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
+    public void AnnuleerReservering(string gastNaam)
+    {
+        var reservering = GetReservationByName(gastNaam);
+        if (reservering != null)
+        {
+            reserveringen.Remove(reservering);
+            SaveReservationsToJson();
+            Console.WriteLine("The reservation has been successfully canceled.");
+        }
+        else
+        {
+            Console.WriteLine("No reservation found with the given name.");
+        }
+    }
     public void SaveReservationsToJson()
     {
         string json = JsonConvert.SerializeObject(reserveringen, Formatting.Indented);

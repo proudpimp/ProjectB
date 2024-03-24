@@ -81,26 +81,13 @@ class Program
                     break;
 
                 case "2":
-                    Console.WriteLine("Cancel reservation");
+                    Console.WriteLine("Cancel the reservation");
 
                     Console.Write("Enter the name of the person who made the reservation: ");
                     string gastNaam = Console.ReadLine();
 
-                    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                    string fileNamePattern = $"Reservation_{gastNaam}_Confirmation.txt";
-
-                    string fullPath = Path.Combine(folderPath, fileNamePattern);
-
-                    if (File.Exists(fullPath))
-                    {
-                        File.Delete(fullPath);
-                        Console.WriteLine("The reservation is succesfully cancelled");
-                    }
-                    else
-                    {
-                        Console.WriteLine("No reservation found with the given name. ");
-                    }
+                    Reserveringen reserveringAnnuleren = new Reserveringen();
+                    reserveringAnnuleren.AnnuleerReservering(gastNaam);
                     break;
                 
                 case "3":
