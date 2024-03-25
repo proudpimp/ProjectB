@@ -10,7 +10,7 @@ class Program
         {
             Console.WriteLine("\nWelcome by Jake's restaurant");
             Console.WriteLine("1) Make a reservation");
-            Console.WriteLine("2) Cancelling reservation");
+            Console.WriteLine("2) Cancel reservation");
             Console.WriteLine("3) Adjust reservation");
             Console.WriteLine("4) Contactinfo");
             Console.WriteLine("5) Table details");
@@ -73,7 +73,7 @@ class Program
                     DateTime datumTijd;
                     while (!DateTime.TryParse(Console.ReadLine(), out datumTijd))
                     {
-                        Console.WriteLine("Invalid date, try again");
+                        Console.WriteLine("Invalid date or time , try again");
                         Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     }
 
@@ -117,7 +117,7 @@ class Program
                     break;
 
                 case "4":
-                    RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","09:00/20:00, Mon/Sat");
+                    RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","09:00/20:00, Mon-Sat");
                     System.Console.WriteLine(restaurant.Info());
                     break;
 
