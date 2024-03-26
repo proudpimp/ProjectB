@@ -18,6 +18,11 @@ public class Reserveringen
 
 public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd)
 {
+    if (datumTijd < DateTime.Now)
+    {
+        Console.WriteLine("You cannot make a reservation for a past date and time.");
+        return false;
+    }
     int tafelType = BepaalTafelType(aantalPersonen);
     if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
     {
