@@ -35,6 +35,13 @@ class Program
                         Console.Write("How many people: ");
                     }
 
+                    if (aantalPersonen > 6)
+                        {
+                            Console.WriteLine("The amount of people for this reservation exceeds the limit");
+                            Console.WriteLine("Please call (31 612316367) the restaurant to complete this reservation");
+                            break;
+                        }
+
                     while(true)
                     {
                     Console.WriteLine("Do you want to note something? Y/N  ");
