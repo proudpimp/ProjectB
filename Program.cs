@@ -117,7 +117,7 @@ class Program
                     break;
 
                 case "4":
-                    RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","09:00/20:00, Mon-Sat");
+                    RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","12:00-22:00, Mon-Sat");
                     System.Console.WriteLine(restaurant.Info());
                     break;
 

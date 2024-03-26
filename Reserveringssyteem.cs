@@ -23,6 +23,15 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         Console.WriteLine("You cannot make a reservation for a past date and time.");
         return false;
     }
+
+    int reservationHour = datumTijd.Hour;
+
+    if (reservationHour < 12 || reservationHour > 21)
+    {
+        Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
+        return false;
+    }
+
     int tafelType = BepaalTafelType(aantalPersonen);
     if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
     {
