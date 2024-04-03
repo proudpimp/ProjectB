@@ -44,12 +44,12 @@ class Program
 
                     while(true)
                     {
-                    Console.WriteLine("Do you want to note something? Y/N  ");
+                    Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
                     string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
                         {  
                            Console.WriteLine("---------------------------------");
-                           Console.WriteLine("Write your note:"); 
+                           Console.WriteLine("Write your note or diet preference:"); 
                            Console.WriteLine("---------------------------------");
                            string notitieZelf = Console.ReadLine()!;
                            Console.WriteLine("Thanks for pointing it out, this is your note:"); 
