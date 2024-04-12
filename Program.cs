@@ -21,8 +21,17 @@ class Program
             switch (choice)
             {
                 case "1":
+                var manager = new Reserveringen();
+                Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
+                DateTime checkDate;
+                while (!DateTime.TryParse(Console.ReadLine(), out checkDate))
+                {
+                    Console.WriteLine("Invalid date, try again");
+                    Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
+                }
+
+                    manager.GetAvailableTablesForDay(checkDate);
                     Console.WriteLine("Make a reservation");
-                    var manager = new Reserveringen();
 
                     Console.Write("Fill in your name: ");
                     string naam = Console.ReadLine();

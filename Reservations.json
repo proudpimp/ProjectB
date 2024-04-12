@@ -1,38 +1,32 @@
 [
   {
+    "GastNaam": "y",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-06-06T19:30:00",
+    "TafelType": 2
+  },
+  {
+    "GastNaam": "q",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-06-06T19:30:00",
+    "TafelType": 2
+  },
+  {
+    "GastNaam": "w",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-06-06T19:30:00",
+    "TafelType": 6
+  },
+  {
+    "GastNaam": "e",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-06-06T19:30:00",
+    "TafelType": 6
+  },
+  {
     "GastNaam": "ethanos",
-    "AantalPersonen": 4,
-    "DatumTijd": "2000-01-01T18:00:00",
-    "TafelType": 4
-  },
-  {
-    "GastNaam": "Yunus",
     "AantalPersonen": 2,
-    "DatumTijd": "2020-10-12T20:00:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "Yanus",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-10-11T13:00:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "Okks ",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-05-05T01:00:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "Okks",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-05-05T18:00:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "otttt",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-05-05T21:00:00",
+    "DatumTijd": "2024-05-05T19:30:00",
     "TafelType": 2
   }
 ]

@@ -123,4 +123,39 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     }
 
 
+public void GetAvailableTablesForDay(DateTime date)
+{
+    int availableTablesForTwo = Max2Tafels;
+    int availableTablesForFour = Max4Tafels;
+    int availableTablesForSix = Max6Tafels;
+
+    foreach (var reservation in reserveringen)
+    {
+        if (reservation.DatumTijd.Date == date.Date)
+        {
+            if (reservation.TafelType == 2)
+            {
+                availableTablesForTwo--;
+            }
+            else if (reservation.TafelType == 4)
+            {
+                availableTablesForFour--;
+            }
+            else if (reservation.TafelType == 6)
+            {
+                availableTablesForSix--;
+            }
+        }
+    }
+
+    int totalAvailableTables = availableTablesForTwo + availableTablesForFour + availableTablesForSix;
+
+    Console.WriteLine($"Available tables for {date.ToString("yyyy-MM-dd")}:\n" +
+                      $"- Two-person tables: {availableTablesForTwo}\n" +
+                      $"- Four-person tables: {availableTablesForFour}\n" +
+                      $"- Six-person tables: {availableTablesForSix}\n" +
+                      $"Total available tables: {totalAvailableTables}");
+
+}
+
 }
