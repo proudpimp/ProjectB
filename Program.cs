@@ -51,8 +51,7 @@ class Program
                             break;
                         }
 
-                    while(true)
-                    {
+                    
                     Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
                     string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
@@ -82,7 +81,7 @@ class Program
                         }
                         
                       
-                    }
+                    
 
 
                     Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
