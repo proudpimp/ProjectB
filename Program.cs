@@ -51,7 +51,8 @@ class Program
                             break;
                         }
 
-                    
+                    while(true)
+                    {
                     Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
                     string notitieAntw = Console.ReadLine().ToUpper()!; 
                         if (notitieAntw == "Y")
@@ -79,6 +80,7 @@ class Program
                         {
                             Console.WriteLine("Invalid input. fill in Y or N.");
                         }
+                    }
                         
                       
                     
