@@ -51,6 +51,7 @@ class Program
                             break;
                         }
 
+                    string notitieZelf ="";
                     while(true)
                     {
                     Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
@@ -60,7 +61,7 @@ class Program
                            Console.WriteLine("---------------------------------");
                            Console.WriteLine("Write your note or diet preference:"); 
                            Console.WriteLine("---------------------------------");
-                           string notitieZelf = Console.ReadLine()!;
+                           notitieZelf = Console.ReadLine()!;
                            Console.WriteLine("Thanks for pointing it out, this is your note:"); 
                            Console.WriteLine("---------------------------------");
                            Console.WriteLine($"{notitieZelf}"); 
@@ -94,7 +95,7 @@ class Program
                         Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     }
 
-                    manager.VoegReserveringToe(naam, aantalPersonen, datumTijd);
+                    manager.VoegReserveringToe(naam, aantalPersonen, datumTijd,notitieZelf);
                     break;
 
                 case "2":

@@ -1,32 +1,16 @@
 [
   {
-    "GastNaam": "y",
+    "GastNaam": "Ethanos",
+    "AantalPersonen": 5,
+    "DatumTijd": "2024-12-12T15:00:00",
+    "TafelType": 6,
+    "Notitie": ""
+  },
+  {
+    "GastNaam": "Sercan",
     "AantalPersonen": 2,
-    "DatumTijd": "2024-06-06T19:30:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "q",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-06-06T19:30:00",
-    "TafelType": 2
-  },
-  {
-    "GastNaam": "w",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-06-06T19:30:00",
-    "TafelType": 6
-  },
-  {
-    "GastNaam": "e",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-06-06T19:30:00",
-    "TafelType": 6
-  },
-  {
-    "GastNaam": "ethanos",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-05-05T19:30:00",
-    "TafelType": 2
+    "DatumTijd": "2024-12-12T15:00:00",
+    "TafelType": 2,
+    "Notitie": "Hellox"
   }
 ]

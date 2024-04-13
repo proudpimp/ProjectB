@@ -16,7 +16,7 @@ public class Reserveringen
         LoadReservationsFromJson();
     }
 
-public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd)
+public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd,string notitie)
 {
     if (datumTijd < DateTime.Now)
     {
@@ -39,7 +39,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         return false;
     }
     
-    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType);
+    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType,notitie);
     reserveringen.Add(nieuweReservering);
     Console.WriteLine("Reservation successfully added for " + gastNaam);
 
