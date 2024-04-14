@@ -4,8 +4,7 @@ public class Reserveringen
 {
     private List<TafelReservering> reserveringen = new List<TafelReservering>();
     private static readonly string JsonFilePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-        "GitHub", "ProjectB", "Reservations.json");
+        Environment.CurrentDirectory,"Reservations.json");
 
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;

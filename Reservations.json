@@ -5,5 +5,12 @@
     "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 2,
     "Notitie": ""
+  },
+  {
+    "GastNaam": "Ahmet",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-12-12T15:00:00",
+    "TafelType": 4,
+    "Notitie": "hellothere"
   }
 ]
