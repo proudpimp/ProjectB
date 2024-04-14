@@ -1,16 +1,9 @@
 [
   {
-    "GastNaam": "Ethanos",
-    "AantalPersonen": 5,
-    "DatumTijd": "2024-12-12T15:00:00",
-    "TafelType": 6,
-    "Notitie": ""
-  },
-  {
     "GastNaam": "Sercan",
     "AantalPersonen": 2,
     "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 2,
-    "Notitie": "Hellox"
+    "Notitie": ""
   }
 ]
