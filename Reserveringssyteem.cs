@@ -151,7 +151,7 @@ public void GetAvailableTablesForDay(DateTime date)
 
     int totalAvailableTables = availableTablesForTwo + availableTablesForFour + availableTablesForSix;
 
-    Console.WriteLine($"Available tables for {date.ToString("yyyy-mm-dd")}:\n" +
+    Console.WriteLine($"Available tables for {date.ToString("yyyy-MM-dd")}:\n" +
                       $"- Two-person tables: {availableTablesForTwo}\n" +
                       $"- Four-person tables: {availableTablesForFour}\n" +
                       $"- Six-person tables: {availableTablesForSix}\n" +
