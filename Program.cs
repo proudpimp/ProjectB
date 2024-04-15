@@ -8,7 +8,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("\nWelcome by Jake's restaurant");
+            Console.WriteLine("\nWelcome at Jake's restaurant");
             Console.WriteLine("1) Make a reservation");
             Console.WriteLine("2) Cancel reservation");
             Console.WriteLine("3) Adjust reservation");
