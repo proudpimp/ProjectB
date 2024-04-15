@@ -48,11 +48,11 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     string fullPath = Path.Combine(folderPath, fileName);
 
     string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
-                            $"Reservationc for {gastNaam}\n" +
+                            $"Reservation for {gastNaam}\n" +
                             $"Amount of people: {aantalPersonen}\n" +
                             $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
-                            $"Tabeltype: {tafelType}\n" +
-                            $"Notitie: {notitie}";
+                            $"Tabletype: {tafelType}\n" +
+                            $"Note: {notitie}";
 
 
     try
