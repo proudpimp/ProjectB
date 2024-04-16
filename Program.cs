@@ -22,12 +22,21 @@ class Program
             {
                 case "1":
                 var manager = new Reserveringen();
-                Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
                 DateTime checkDate;
-                while (!DateTime.TryParse(Console.ReadLine(), out checkDate))
+                while (true)
                 {
-                    Console.WriteLine("Invalid date, try again");
                     Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
+                    while (!DateTime.TryParse(Console.ReadLine(), out checkDate))
+                    {
+                        Console.WriteLine("Invalid date, try again");
+                        Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
+                    }
+                    if (checkDate.Date < DateTime.Now)
+                    {
+                        Console.WriteLine("You cannot check availability for past dates. Please enter a valid date.");
+                        continue;
+                    }
+                    break;
                 }
 
                     manager.GetAvailableTablesForDay(checkDate);

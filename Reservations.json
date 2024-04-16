@@ -12,5 +12,12 @@
     "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 4,
     "Notitie": "hellothere"
+  },
+  {
+    "GastNaam": "Ethanos",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-12-12T15:00:00",
+    "TafelType": 4,
+    "Notitie": "gluten free"
   }
 ]
