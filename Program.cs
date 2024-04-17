@@ -29,7 +29,7 @@ class Program
                         Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     }
 
-                    Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-mm-dd hh:mm"));
+                    Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-MM-dd HH:mm"));
                     manager.GetAvailableTablesForDay(datumTijd);
 
                     Console.Write("Fill in your name: ");
