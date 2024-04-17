@@ -3,8 +3,9 @@ using Newtonsoft.Json;
 public class Reserveringen
 {
     private List<TafelReservering> reserveringen = new List<TafelReservering>();
-    private static readonly string JsonFilePath = "./Reservations.json";
-
+    private static readonly string JsonFilePath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+        "GitHub", "ProjectB", "Reservations.json");
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;

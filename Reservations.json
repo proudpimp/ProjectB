@@ -54,5 +54,19 @@
     "DatumTijd": "2024-10-20T16:00:00",
     "TafelType": 2,
     "Notitie": ""
+  },
+  {
+    "GastNaam": "Capt America",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-10-10T16:00:00",
+    "TafelType": 4,
+    "Notitie": "Villain Free"
+  },
+  {
+    "GastNaam": "Danny",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-10-10T16:00:00",
+    "TafelType": 4,
+    "Notitie": ""
   }
 ]
