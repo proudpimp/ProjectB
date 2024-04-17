@@ -5,14 +5,13 @@ class Program
 {
     public static void Main()
     {
-
         while (true)
         {
             Console.WriteLine("\nWelcome at Jake's restaurant");
             Console.WriteLine("1) Make a reservation");
             Console.WriteLine("2) Cancel reservation");
             Console.WriteLine("3) Adjust reservation");
-            Console.WriteLine("4) Contactinfo");
+            Console.WriteLine("4) Contact info");
             Console.WriteLine("5) Table details");
             Console.WriteLine("6) Quit");
             Console.Write("Make a choice: ");
@@ -21,26 +20,17 @@ class Program
             switch (choice)
             {
                 case "1":
-                var manager = new Reserveringen();
-                DateTime checkDate;
-                while (true)
-                {
-                    Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
-                    while (!DateTime.TryParse(Console.ReadLine(), out checkDate))
+                    var manager = new Reserveringen();
+                    DateTime datumTijd;
+                    Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
+                    while (!DateTime.TryParse(Console.ReadLine(), out datumTijd) || datumTijd < DateTime.Now || datumTijd.Hour < 12 || datumTijd.Hour >= 22)
                     {
-                        Console.WriteLine("Invalid date, try again");
-                        Console.Write("Enter the date (yyyy-MM-dd) to check availability: ");
+                        Console.WriteLine("Invalid date or time. Please enter a valid date and time between 12:00 and 22:00.");
+                        Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     }
-                    if (checkDate.Date < DateTime.Now)
-                    {
-                        Console.WriteLine("You cannot check availability for past dates. Please enter a valid date.");
-                        continue;
-                    }
-                    break;
-                }
 
-                    manager.GetAvailableTablesForDay(checkDate);
-                    Console.WriteLine("Make a reservation");
+                    Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-mm-dd hh:mm"));
+                    manager.GetAvailableTablesForDay(datumTijd);
 
                     Console.Write("Fill in your name: ");
                     string naam = Console.ReadLine();
@@ -54,57 +44,40 @@ class Program
                     }
 
                     if (aantalPersonen > 6)
+                    {
+                        Console.WriteLine("The amount of people for this reservation exceeds the limit.");
+                        Console.WriteLine("Please call (31 612316367) the restaurant to complete this reservation.");
+                        break;
+                    }
+
+                    string notitieZelf = "";
+                    Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
+                    string notitieAntw = Console.ReadLine().ToUpper();
+                    while (true)
+                    {
+                        if (notitieAntw == "Y")
                         {
-                            Console.WriteLine("The amount of people for this reservation exceeds the limit");
-                            Console.WriteLine("Please call (31 612316367) the restaurant to complete this reservation");
+                            Console.WriteLine("---------------------------------");
+                            Console.WriteLine("Write your note or diet preference:");
+                            notitieZelf = Console.ReadLine()!;
+                            Console.WriteLine("Thanks for pointing it out, this is your note:");
+                            Console.WriteLine("---------------------------------");
+                            Console.WriteLine($"{notitieZelf}");
+                            Console.WriteLine("---------------------------------");
                             break;
                         }
-
-                    string notitieZelf ="";
-                    while(true)
-                    {
-                    Console.WriteLine("Do you have a diet preference or a note for us? Y/N  ");
-                    string notitieAntw = Console.ReadLine().ToUpper()!; 
-                        if (notitieAntw == "Y")
-                        {  
-                           Console.WriteLine("---------------------------------");
-                           Console.WriteLine("Write your note or diet preference:"); 
-                           Console.WriteLine("---------------------------------");
-                           notitieZelf = Console.ReadLine()!;
-                           Console.WriteLine("Thanks for pointing it out, this is your note:"); 
-                           Console.WriteLine("---------------------------------");
-                           Console.WriteLine($"{notitieZelf}"); 
-                           Console.WriteLine("---------------------------------");
-                           break;
-                          
-
-                        
-                        }
-
                         else if (notitieAntw == "N")
                         {
-                            break; 
+                            break;
                         }
-
                         else
                         {
-                            Console.WriteLine("Invalid input. fill in Y or N.");
+                            Console.WriteLine("Invalid input. Fill in Y or N.");
+                            notitieAntw = Console.ReadLine().ToUpper();
                         }
                     }
-                        
-                      
-                    
 
-
-                    Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
-                    DateTime datumTijd;
-                    while (!DateTime.TryParse(Console.ReadLine(), out datumTijd))
-                    {
-                        Console.WriteLine("Invalid date or time , try again");
-                        Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
-                    }
-
-                    manager.VoegReserveringToe(naam, aantalPersonen, datumTijd,notitieZelf);
+                    manager.VoegReserveringToe(naam, aantalPersonen, datumTijd, notitieZelf);
                     break;
 
                 case "2":

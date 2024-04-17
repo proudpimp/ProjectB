@@ -19,5 +19,33 @@
     "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 4,
     "Notitie": "gluten free"
+  },
+  {
+    "GastNaam": "Okky",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-05-05T18:00:00",
+    "TafelType": 2,
+    "Notitie": ""
+  },
+  {
+    "GastNaam": "oks",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-05-05T18:00:00",
+    "TafelType": 2,
+    "Notitie": ""
+  },
+  {
+    "GastNaam": "2",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-05-05T18:00:00",
+    "TafelType": 2,
+    "Notitie": ""
+  },
+  {
+    "GastNaam": "Serco",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-12-12T19:30:00",
+    "TafelType": 2,
+    "Notitie": ""
   }
 ]
