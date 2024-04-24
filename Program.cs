@@ -100,7 +100,14 @@ class Program
 
                     if (reservation != null)
                     {
-                        Console.WriteLine("Your current reservation details:\n" + JsonConvert.SerializeObject(reservation, Formatting.Indented));
+                        Console.WriteLine("Your current reservation details:");
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine($"Name: {reservation.GastNaam}");
+                        Console.WriteLine($"Number of People: {reservation.AantalPersonen}");
+                        Console.WriteLine($"Date and Time: {reservation.DatumTijd.ToString("yyyy-MM-dd HH:mm")}");
+                        Console.WriteLine($"Table Type: {reservation.TafelType}");
+                        Console.WriteLine($"Notes: {reservation.Notitie}");
+                        Console.WriteLine("-------------------------------------");
 
                         Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
                         string nieuweDatumTijd = Console.ReadLine();
