@@ -1,30 +1,37 @@
 [
   {
-    "GastNaam": "John Doe",
-    "AantalPersonen": 4,
-    "DatumTijd": "2024-04-22T14:24:16.9705172+02:00",
-    "TafelType": 4,
-    "Notitie": "Vegetarian"
+    "GastNaam": "Yunus",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-10-11T19:30:00",
+    "TafelType": 6,
+    "Notitie": ""
   },
   {
-    "GastNaam": "John Doe",
-    "AantalPersonen": 4,
-    "DatumTijd": "2024-04-22T14:48:18.1467869+02:00",
-    "TafelType": 4,
-    "Notitie": "Vegetarian"
+    "GastNaam": "Yunus",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-10-11T19:30:00",
+    "TafelType": 6,
+    "Notitie": ""
   },
   {
-    "GastNaam": "John Doe",
+    "GastNaam": "Yunus",
     "AantalPersonen": 4,
-    "DatumTijd": "2024-04-22T14:48:35.84937+02:00",
+    "DatumTijd": "2024-10-11T19:30:00",
     "TafelType": 4,
-    "Notitie": "Vegetarian"
+    "Notitie": ""
   },
   {
-    "GastNaam": "John Doe",
+    "GastNaam": "Yunus",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-10-11T19:30:00",
+    "TafelType": 2,
+    "Notitie": ""
+  },
+  {
+    "GastNaam": "Ethanos",
     "AantalPersonen": 4,
-    "DatumTijd": "2024-04-22T14:48:55.2194728+02:00",
+    "DatumTijd": "2024-10-11T19:30:00",
     "TafelType": 4,
-    "Notitie": "Vegetarian"
+    "Notitie": ""
   }
 ]

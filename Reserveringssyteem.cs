@@ -1,3 +1,4 @@
+using System.Buffers;
 using Newtonsoft.Json;
 
 public class Reserveringen
@@ -67,7 +68,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     return true;
 }
 
-    private int BepaalTafelType(int aantalPersonen)
+    public int BepaalTafelType(int aantalPersonen)
     {
         if (aantalPersonen <= 2) return 2;
         if (aantalPersonen <= 4) return 4;
@@ -88,6 +89,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
 
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
+
     public void AnnuleerReservering(string gastNaam)
     {
         var reservering = GetReservationByName(gastNaam);

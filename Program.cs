@@ -5,6 +5,8 @@ class Program
 {
     public static void Main()
     {
+        List<string> foodChoices = new List<string>();
+
         while (true)
         {
             Console.WriteLine("\nWelcome at Jake's restaurant");
@@ -13,7 +15,9 @@ class Program
             Console.WriteLine("3) Adjust reservation");
             Console.WriteLine("4) Contact info");
             Console.WriteLine("5) Table details");
-            Console.WriteLine("6) Quit");
+            Console.WriteLine("6) Menu");
+            Console.WriteLine("7) Quit");
+
             Console.Write("Make a choice: ");
             string choice = Console.ReadLine();
 
@@ -48,6 +52,41 @@ class Program
                         Console.WriteLine("The amount of people for this reservation exceeds the limit.");
                         Console.WriteLine("Please call (31 612316367) the restaurant to complete this reservation.");
                         break;
+                    }
+
+                    if (manager.BepaalTafelType(aantalPersonen) == 0 || !manager.ControleerBeschikbaarheid(datumTijd, manager.BepaalTafelType(aantalPersonen)))
+                    {
+                        Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
+                        
+                        while (true)
+                        {
+                            Console.WriteLine("1) decrease your party size.");
+                            Console.WriteLine("2) Quit");
+                            Console.Write("Make a choice: ");
+                            string retryChoice = Console.ReadLine();
+
+                            switch (retryChoice)
+                            {
+                                case "1":
+                                    Console.Write("How many people: ");
+                                    while (!int.TryParse(Console.ReadLine(), out aantalPersonen) || aantalPersonen <= 0 || manager.BepaalTafelType(aantalPersonen) == 0 || !manager.ControleerBeschikbaarheid(datumTijd, manager.BepaalTafelType(aantalPersonen)))
+                                    {
+                                        Console.WriteLine("Invalid input, try again.");
+                                        Console.Write("How many people: ");
+                                    }
+                                    break;
+                                case "2":
+
+                                    return;
+
+                                default:
+                                    Console.WriteLine("Invalid choice, Choose a valid option");
+                                    break;
+                            }
+
+                            if (retryChoice == "1" || retryChoice == "2")
+                                break;
+                        }
                     }
 
                     string notitieZelf = "";
@@ -136,13 +175,124 @@ class Program
                     break;
 
                 case "6":
+                    while (true)
+                    {
+                        Console.WriteLine("Menu:");
+                        Console.WriteLine("Discover our menu:");
+                        Console.WriteLine("1) -Starters");
+                        Console.WriteLine("2) -Breakfast");
+                        Console.WriteLine("3) -Burgers");
+                        Console.WriteLine("4) -Wraps");
+                        Console.WriteLine("5) -Sandwiches");
+                        Console.WriteLine("6) -Bites");
+                        Console.WriteLine("Q) -Back to main menu");
+                        Console.Write("Make a choice: ");
+                        string MenuChoice = Console.ReadLine().ToUpper();
+
+                        if (MenuChoice == "Q")
+                            break;
+
+                        switch (MenuChoice)
+                        {
+                            case "1":
+                                Console.WriteLine("Starters:");
+                                Console.WriteLine("1) - Basket of fries ($4)");
+                                Console.WriteLine("2) - Quesadilla ($5)");
+                                Console.WriteLine("3) - Chicken Tender Basket x3 ($6)");
+                                Console.WriteLine("4) - Chicken Wings x4 ($7)");
+                                Console.WriteLine("Q) - Return to menu");
+                                string starterChoice = Console.ReadLine().ToUpper();
+                                if (starterChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+                                
+                            case "2":
+                                Console.WriteLine("Breakfast:");
+                                Console.WriteLine("5) -Breakfast Sandwich ($10)");
+                                Console.WriteLine("6) -Omelette ($7)");
+                                Console.WriteLine("7) -Boiled Eggs x2 ($5)");
+                                Console.WriteLine("Q) - Return to menu");
+
+                                string BreakfastChoice = Console.ReadLine();
+                                if (BreakfastChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+
+                            case "3":
+                                Console.WriteLine("Burgers:");
+                                Console.WriteLine("8) -Cheeseburger ($8)");
+                                Console.WriteLine("9) -Veggie Burger ($7)");
+                                Console.WriteLine("10) -Chicken Burger ($9)");
+                                Console.WriteLine("Q) - Return to menu");
+
+                                string BurgerChoice = Console.ReadLine();
+                                if (BurgerChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+
+                            case "4":
+                                Console.WriteLine("Wraps:");
+                                Console.WriteLine("11) -Chicken Wrap ($8)");
+                                Console.WriteLine("12) -Vegetable Wrap ($7)");
+                                Console.WriteLine("13) -Tuna Wrap ($9)");
+                                Console.WriteLine("Q) - Return to menu");
+
+                                string WrapChoice = Console.ReadLine();
+                                if (WrapChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+
+                            case "5":
+                                Console.WriteLine("Sandwiches:");
+                                Console.WriteLine("14) -BLT Sandwich ($8)");
+                                Console.WriteLine("15) -Club Sandwich ($9)");
+                                Console.WriteLine("16) -Grilled Cheese Sandwich ($7)");
+                                Console.WriteLine("Q) - Return to menu");
+
+                                string SandwichChoice = Console.ReadLine();
+                                if (SandwichChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+
+                            case "6":
+                                Console.WriteLine("Bites:");
+                                Console.WriteLine("17) -Slice of Pizza ($3)");
+                                Console.WriteLine("18) -Hot Dog ($4)");
+                                Console.WriteLine("19) -Nachos ($6)");
+                                Console.WriteLine("Q) - Return to menu");
+
+                                string BitesChoice = Console.ReadLine();
+                                if (BitesChoice == "Q")
+                                {
+                                    break;
+                                }
+                                break;
+
+                            default:
+                                Console.WriteLine("Invalid choice, Choose a valid option");
+                                break;
+                        }
+                    }
+                    break;
+
+                case "7":
                     Console.WriteLine("Quit");
                     return;
-
                 default:
                     Console.WriteLine("Invalid choice, Choose a valid option");
                     break;
             }
+
         }
     }
 }
