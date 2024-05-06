@@ -1,12 +1,26 @@
 using System.Buffers;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
 public class Reserveringen
 {
     private List<TafelReservering> reserveringen = new List<TafelReservering>();
-    private static readonly string JsonFilePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-        "GitHub", "ProjectB", "Reservations.json");
+    private static string JsonFilePath
+    {
+        get
+        {
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "GitHub", "ProjectB", "Reservations.json");
+            }
+            else
+            {
+                return "./Reservations.json";
+            }
+        }
+    }
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
