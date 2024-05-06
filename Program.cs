@@ -14,8 +14,8 @@ class Program
             Console.WriteLine("2) Cancel reservation");
             Console.WriteLine("3) Adjust reservation");
             Console.WriteLine("4) Contact info");
-            Console.WriteLine("5) Table details");
-            Console.WriteLine("6) Menu");
+            Console.WriteLine("5) Menu");
+            Console.WriteLine("6) Table details");
             Console.WriteLine("7) Quit");
 
             Console.Write("Make a choice: ");
@@ -168,13 +168,6 @@ class Program
                     break;
 
                 case "5":
-                    Console.WriteLine("We have:");
-                    Console.WriteLine("- Eight two-person tables,");
-                    Console.WriteLine("- Five four-person tables,");
-                    Console.WriteLine("- Two six-person tables.");
-                    break;
-
-                case "6":
                     while (true)
                     {
                         Console.WriteLine("Menu:");
@@ -285,6 +278,13 @@ class Program
                     }
                     break;
 
+                case "6":
+                    Console.WriteLine("We have:");
+                    Console.WriteLine("- Eight two-person tables,");
+                    Console.WriteLine("- Five four-person tables,");
+                    Console.WriteLine("- Two six-person tables.");
+                    break;
+                    
                 case "7":
                     Console.WriteLine("Quit");
                     return;
@@ -295,4 +295,5 @@ class Program
 
         }
     }
+
 }
