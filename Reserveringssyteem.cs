@@ -83,7 +83,7 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
                             $"Amount of people: {aantalPersonen}\n" +
                             $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
                             $"Tabletype: {tafelType}\n" +
-                            $"TableCode: {tableCode}" +
+                            $"TableCode: {tableCode}\n" +
                             $"Note: {notitie}";
 
 
