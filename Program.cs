@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
 
-class Program
+static class Program
 {
+    static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "6A", "6B" };
+
     public static void Main()
     {
-        List<string> foodChoices = new List<string>();
-
         while (true)
         {
             Console.WriteLine("\nWelcome at Jake's restaurant");
@@ -24,7 +24,6 @@ class Program
             switch (choice)
             {
                 case "1":
-                    var manager = new Reserveringen();
                     DateTime datumTijd;
                     Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
                     while (!DateTime.TryParse(Console.ReadLine(), out datumTijd) || datumTijd < DateTime.Now || datumTijd.Hour < 12 || datumTijd.Hour >= 22)
@@ -34,7 +33,7 @@ class Program
                     }
 
                     Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-MM-dd HH:mm"));
-                    manager.GetAvailableTablesForDay(datumTijd);
+                    Reserveringen.GetAvailableTablesForDay(datumTijd);
 
                     Console.Write("Fill in your name: ");
                     string naam = Console.ReadLine();
@@ -54,13 +53,87 @@ class Program
                         break;
                     }
 
-                    if (manager.BepaalTafelType(aantalPersonen) == 0 || !manager.ControleerBeschikbaarheid(datumTijd, manager.BepaalTafelType(aantalPersonen)))
+                    Console.WriteLine("\nChoose your table by entering the table code (e.g., 6A, 4C):");
+                    Console.WriteLine("\nRestaurant Table Map:");
+                    Console.WriteLine("  [4A]                              [4B]");
+                    Console.WriteLine("                   [6A]                 ");
+                    Console.WriteLine("[2A]   [2B]                    [2C]   [2D]");
+                    Console.WriteLine("");
+                    Console.WriteLine("[2E]   [2F]                    [2G]   [2H]");
+                    Console.WriteLine("                   [6B]                 ");
+                    Console.WriteLine("  [4C]                               [4D]");
+                    string[] restrictedTableCodes;
+
+                    if (aantalPersonen == 1 || aantalPersonen == 2)
+                    {
+                        List<string> tempCodes = new();
+                        foreach (var code in validTableCodes)
+                        {
+                            if (code[0] == '2')
+                            {
+                                tempCodes.Add(code);
+                            }
+                        }
+
+                        restrictedTableCodes = tempCodes.ToArray();
+                    }
+
+
+
+                    else if (aantalPersonen == 3 || aantalPersonen == 4)
+                    {
+                        List<string> tempCodes = new List<string>();
+                        foreach (var code in validTableCodes)
+                        {
+                            if (code[0] == '4')
+                            {
+                                tempCodes.Add(code);
+                            }
+                        }
+                        restrictedTableCodes = tempCodes.ToArray();
+                    }
+                    else if (aantalPersonen == 5 || aantalPersonen == 6)
+                    {
+                        List<string> tempCodes = new List<string>();
+                        foreach (var code in validTableCodes)
+                        {
+                            if (code[0] == '6')
+                            {
+                                tempCodes.Add(code);
+                            }
+                        }
+                        restrictedTableCodes = tempCodes.ToArray();
+                    }
+                    else
+                    {
+                        restrictedTableCodes = validTableCodes;
+                    }
+                    Console.WriteLine("\nChoose your table by entering the table code (e.g., 6A, 4C):");
+                    foreach (var code in restrictedTableCodes)
+                    {
+                        if (Reserveringen.IsTableAvailable(code, datumTijd))
+                        {
+                            Console.WriteLine($"[{code}]");
+                        }
+                    }
+                    string tableCode;
+                    while (true)
+                    {
+                        tableCode = Console.ReadLine();
+                        if (restrictedTableCodes.Contains(tableCode, StringComparer.OrdinalIgnoreCase) && Reserveringen.IsTableAvailable(tableCode, datumTijd))
+                        {
+                            break;
+                        }
+                        Console.WriteLine("Invalid table code or not suitable for the number of people or not available. Please enter a valid table code:");
+                    }
+
+                    if (Reserveringen.BepaalTafelType(aantalPersonen) == 0 || !Reserveringen.ControleerBeschikbaarheid(datumTijd, Reserveringen.BepaalTafelType(aantalPersonen)))
                     {
                         Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
                         
                         while (true)
                         {
-                            Console.WriteLine("1) decrease your party size.");
+                            Console.WriteLine("1) Decrease your party size.");
                             Console.WriteLine("2) Quit");
                             Console.Write("Make a choice: ");
                             string retryChoice = Console.ReadLine();
@@ -69,7 +142,7 @@ class Program
                             {
                                 case "1":
                                     Console.Write("How many people: ");
-                                    while (!int.TryParse(Console.ReadLine(), out aantalPersonen) || aantalPersonen <= 0 || manager.BepaalTafelType(aantalPersonen) == 0 || !manager.ControleerBeschikbaarheid(datumTijd, manager.BepaalTafelType(aantalPersonen)))
+                                    while (!int.TryParse(Console.ReadLine(), out aantalPersonen) || aantalPersonen <= 0 || Reserveringen.BepaalTafelType(aantalPersonen) == 0 || !Reserveringen.ControleerBeschikbaarheid(datumTijd, Reserveringen.BepaalTafelType(aantalPersonen)))
                                     {
                                         Console.WriteLine("Invalid input, try again.");
                                         Console.Write("How many people: ");
@@ -116,7 +189,7 @@ class Program
                         }
                     }
 
-                    manager.VoegReserveringToe(naam, aantalPersonen, datumTijd, notitieZelf);
+                    Reserveringen.VoegReserveringToe(naam, aantalPersonen, datumTijd, tableCode, notitieZelf);
                     break;
 
                 case "2":
@@ -125,8 +198,7 @@ class Program
                     Console.Write("Enter the name of the person who made the reservation: ");
                     string gastNaam = Console.ReadLine();
 
-                    Reserveringen reserveringAnnuleren = new Reserveringen();
-                    reserveringAnnuleren.AnnuleerReservering(gastNaam);
+                    Reserveringen.AnnuleerReservering(gastNaam);
                     break;
                 
                 case "3":
@@ -134,8 +206,7 @@ class Program
                     Console.Write("Enter the name of the person who made the reservation: ");
                     string zoekNaam = Console.ReadLine();
 
-                    Reserveringen reserveringen = new Reserveringen();
-                    var reservation = reserveringen.GetReservationByName(zoekNaam);
+                    var reservation = Reserveringen.GetReservationByName(zoekNaam);
 
                     if (reservation != null)
                     {
@@ -146,13 +217,15 @@ class Program
                         Console.WriteLine($"Date and Time: {reservation.DatumTijd.ToString("yyyy-MM-dd HH:mm")}");
                         Console.WriteLine($"Table Type: {reservation.TafelType}");
                         Console.WriteLine($"Notes: {reservation.Notitie}");
+                        Console.WriteLine($"Notes: {reservation.TableCode}");
+
                         Console.WriteLine("-------------------------------------");
 
                         Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
                         string nieuweDatumTijd = Console.ReadLine();
 
                         reservation.DatumTijd = DateTime.ParseExact(nieuweDatumTijd, "yyyy-MM-dd HH:mm", null);
-                        reserveringen.SaveReservationsToJson();
+                        Reserveringen.SaveReservationsToJson();
 
                         Console.WriteLine("The reservation has been adjusted.");
                     }

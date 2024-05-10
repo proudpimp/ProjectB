@@ -2,9 +2,9 @@ using System.Buffers;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-public class Reserveringen
+public static class Reserveringen
 {
-    private List<TafelReservering> reserveringen = new List<TafelReservering>();
+    private static List<TafelReservering> reserveringen = new List<TafelReservering>();
     private static string JsonFilePath
     {
         get
@@ -25,12 +25,29 @@ public class Reserveringen
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
 
-    public Reserveringen()
+    static Reserveringen()
     {
         LoadReservationsFromJson();
     }
 
-public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd,string notitie)
+public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
+{
+    bool noReservations = true;
+
+    foreach (var reservation in reserveringen)
+    {
+        if (reservation.TableCode == tableCode && reservation.DatumTijd.Date == datumTijd.Date)
+        {
+            noReservations = false;
+            break;
+        }
+    }
+
+    return noReservations;
+
+}
+
+public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
 {
     if (datumTijd < DateTime.Now)
     {
@@ -53,7 +70,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         return false;
     }
     
-    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType,notitie);
+    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
     reserveringen.Add(nieuweReservering);
     Console.WriteLine("Reservation successfully added for " + gastNaam);
 
@@ -66,6 +83,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
                             $"Amount of people: {aantalPersonen}\n" +
                             $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
                             $"Tabletype: {tafelType}\n" +
+                            $"TableCode: {tableCode}" +
                             $"Note: {notitie}";
 
 
@@ -82,7 +100,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
     return true;
 }
 
-    public int BepaalTafelType(int aantalPersonen)
+    public static int BepaalTafelType(int aantalPersonen)
     {
         if (aantalPersonen <= 2) return 2;
         if (aantalPersonen <= 4) return 4;
@@ -90,7 +108,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         return 0;
     }
 
-    public bool ControleerBeschikbaarheid(DateTime datumTijd, int tafelType)
+    public static bool ControleerBeschikbaarheid(DateTime datumTijd, int tafelType)
     {
         int maxTafels;
         switch (tafelType)
@@ -104,7 +122,7 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
 
-    public void AnnuleerReservering(string gastNaam)
+    public static void AnnuleerReservering(string gastNaam)
     {
         var reservering = GetReservationByName(gastNaam);
         if (reservering != null)
@@ -118,13 +136,13 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
             Console.WriteLine("No reservation found with the given name.");
         }
     }
-    public void SaveReservationsToJson()
+    public static void SaveReservationsToJson()
     {
         string json = JsonConvert.SerializeObject(reserveringen, Formatting.Indented);
         File.WriteAllText(JsonFilePath, json);
     }
 
-    private void LoadReservationsFromJson()
+    private static void LoadReservationsFromJson()
     {
         if (File.Exists(JsonFilePath))
         {
@@ -133,13 +151,13 @@ public bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime dat
         }
     }
 
-    public TafelReservering? GetReservationByName(string guestName)
+    public static TafelReservering? GetReservationByName(string guestName)
     {
         return reserveringen.FirstOrDefault(r => r.GastNaam.Equals(guestName, StringComparison.OrdinalIgnoreCase));
     }
 
 
-public void GetAvailableTablesForDay(DateTime date)
+public static void GetAvailableTablesForDay(DateTime date)
 {
     int availableTablesForTwo = Max2Tafels;
     int availableTablesForFour = Max4Tafels;
