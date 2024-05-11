@@ -121,7 +121,7 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
 
-    public static void AnnuleerReservering(string gastNaam)
+    public static bool AnnuleerReservering(string gastNaam)
     {
         var reservering = GetReservationByName(gastNaam);
         if (reservering != null)
@@ -129,10 +129,12 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
             reserveringen.Remove(reservering);
             SaveReservationsToJson();
             Console.WriteLine("The reservation has been successfully canceled.");
+            return true;
         }
         else
         {
             Console.WriteLine("No reservation found with the given name.");
+            return false;
         }
     }
     public static void SaveReservationsToJson()
