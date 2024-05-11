@@ -1,8 +1,11 @@
+using Newtonsoft.Json;
+
 public class TafelReservering
 {
     public string GastNaam { get; set; }
     public int AantalPersonen { get; set; }
     public DateTime DatumTijd { get; set; }
+    [JsonIgnore]
     public int TafelType { get; set; }
     public string TableCode {get; set;}
     public string Notitie{get;set;}
