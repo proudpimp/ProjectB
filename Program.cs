@@ -193,46 +193,11 @@ static class Program
                     break;
 
                 case "2":
-                    Console.WriteLine("Cancel the reservation");
-
-                    Console.Write("Enter the name of the person who made the reservation: ");
-                    string gastNaam = Console.ReadLine();
-
-                    Reserveringen.AnnuleerReservering(gastNaam);
+                    CancelReservation.Cancel();
                     break;
                 
                 case "3":
-                    Console.WriteLine("Adjust reservation");
-                    Console.Write("Enter the name of the person who made the reservation: ");
-                    string zoekNaam = Console.ReadLine();
-
-                    var reservation = Reserveringen.GetReservationByName(zoekNaam);
-
-                    if (reservation != null)
-                    {
-                        Console.WriteLine("Your current reservation details:");
-                        Console.WriteLine("-------------------------------------");
-                        Console.WriteLine($"Name: {reservation.GastNaam}");
-                        Console.WriteLine($"Number of People: {reservation.AantalPersonen}");
-                        Console.WriteLine($"Date and Time: {reservation.DatumTijd.ToString("yyyy-MM-dd HH:mm")}");
-                        Console.WriteLine($"Table Type: {reservation.TafelType}");
-                        Console.WriteLine($"Notes: {reservation.Notitie}");
-                        Console.WriteLine($"Notes: {reservation.TableCode}");
-
-                        Console.WriteLine("-------------------------------------");
-
-                        Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
-                        string nieuweDatumTijd = Console.ReadLine();
-
-                        reservation.DatumTijd = DateTime.ParseExact(nieuweDatumTijd, "yyyy-MM-dd HH:mm", null);
-                        Reserveringen.SaveReservationsToJson();
-
-                        Console.WriteLine("The reservation has been adjusted.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("No reservation found under this name. ");
-                    }
+                    AdjustReservation.Adjust();
                     break;
 
                 case "4":
@@ -241,114 +206,7 @@ static class Program
                     break;
 
                 case "5":
-                    while (true)
-                    {
-                        Console.WriteLine("Menu:");
-                        Console.WriteLine("Discover our menu:");
-                        Console.WriteLine("1) -Starters");
-                        Console.WriteLine("2) -Breakfast");
-                        Console.WriteLine("3) -Burgers");
-                        Console.WriteLine("4) -Wraps");
-                        Console.WriteLine("5) -Sandwiches");
-                        Console.WriteLine("6) -Bites");
-                        Console.WriteLine("Q) -Back to main menu");
-                        Console.Write("Make a choice: ");
-                        string MenuChoice = Console.ReadLine().ToUpper();
-
-                        if (MenuChoice == "Q")
-                            break;
-
-                        switch (MenuChoice)
-                        {
-                            case "1":
-                                Console.WriteLine("Starters:");
-                                Console.WriteLine("1) - Basket of fries ($4)");
-                                Console.WriteLine("2) - Quesadilla ($5)");
-                                Console.WriteLine("3) - Chicken Tender Basket x3 ($6)");
-                                Console.WriteLine("4) - Chicken Wings x4 ($7)");
-                                Console.WriteLine("Q) - Return to menu");
-                                string starterChoice = Console.ReadLine().ToUpper();
-                                if (starterChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-                                
-                            case "2":
-                                Console.WriteLine("Breakfast:");
-                                Console.WriteLine("5) -Breakfast Sandwich ($10)");
-                                Console.WriteLine("6) -Omelette ($7)");
-                                Console.WriteLine("7) -Boiled Eggs x2 ($5)");
-                                Console.WriteLine("Q) - Return to menu");
-
-                                string BreakfastChoice = Console.ReadLine();
-                                if (BreakfastChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-
-                            case "3":
-                                Console.WriteLine("Burgers:");
-                                Console.WriteLine("8) -Cheeseburger ($8)");
-                                Console.WriteLine("9) -Veggie Burger ($7)");
-                                Console.WriteLine("10) -Chicken Burger ($9)");
-                                Console.WriteLine("Q) - Return to menu");
-
-                                string BurgerChoice = Console.ReadLine();
-                                if (BurgerChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-
-                            case "4":
-                                Console.WriteLine("Wraps:");
-                                Console.WriteLine("11) -Chicken Wrap ($8)");
-                                Console.WriteLine("12) -Vegetable Wrap ($7)");
-                                Console.WriteLine("13) -Tuna Wrap ($9)");
-                                Console.WriteLine("Q) - Return to menu");
-
-                                string WrapChoice = Console.ReadLine();
-                                if (WrapChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-
-                            case "5":
-                                Console.WriteLine("Sandwiches:");
-                                Console.WriteLine("14) -BLT Sandwich ($8)");
-                                Console.WriteLine("15) -Club Sandwich ($9)");
-                                Console.WriteLine("16) -Grilled Cheese Sandwich ($7)");
-                                Console.WriteLine("Q) - Return to menu");
-
-                                string SandwichChoice = Console.ReadLine();
-                                if (SandwichChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-
-                            case "6":
-                                Console.WriteLine("Bites:");
-                                Console.WriteLine("17) -Slice of Pizza ($3)");
-                                Console.WriteLine("18) -Hot Dog ($4)");
-                                Console.WriteLine("19) -Nachos ($6)");
-                                Console.WriteLine("Q) - Return to menu");
-
-                                string BitesChoice = Console.ReadLine();
-                                if (BitesChoice == "Q")
-                                {
-                                    break;
-                                }
-                                break;
-
-                            default:
-                                Console.WriteLine("Invalid choice, Choose a valid option");
-                                break;
-                        }
-                    }
+                    Menu.MenuChoice();
                     break;
 
                 case "6":

@@ -50,7 +50,7 @@
   {
     "GastNaam": "danny",
     "AantalPersonen": 2,
-    "DatumTijd": "2024-10-11T15:00:00",
+    "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 2,
     "TableCode": "2H",
     "Notitie": ""
@@ -66,25 +66,9 @@
   {
     "GastNaam": "oktay",
     "AantalPersonen": 1,
-    "DatumTijd": "2024-10-05T16:00:00",
+    "DatumTijd": "2024-12-12T15:00:00",
     "TafelType": 2,
     "TableCode": "2A",
     "Notitie": "yes"
-  },
-  {
-    "GastNaam": "oktay2",
-    "AantalPersonen": 2,
-    "DatumTijd": "2024-10-05T16:00:00",
-    "TafelType": 2,
-    "TableCode": "2B",
-    "Notitie": ""
-  },
-  {
-    "GastNaam": "y",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-10-05T16:00:00",
-    "TafelType": 6,
-    "TableCode": "6a",
-    "Notitie": ""
   }
 ]
