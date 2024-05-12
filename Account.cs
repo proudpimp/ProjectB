@@ -25,21 +25,21 @@ public class Account
 
     public string Password; 
 
-    public DateTime Geboortedatum;
+    public string Geboortedatum;
 
     public string Postcode; 
 
     public string Telefoonnummer; 
 
 
-    public Account(string naam, string emailadres, string wachtwoord, DateTime geboortedatum, string postcode, string telefoonnummer)
+    public Account(string naam, string emailadres, string wachtwoord, string geboortedatum, string postcode, string telefoonnummer)
     {
-        Name = naam; 
+        Name = naam;
         Emailadress = emailadres;
-        Password = wachtwoord; 
-        Geboortedatum = geboortedatum; 
-        Postcode = postcode; 
-        Telefoonnummer = telefoonnummer; 
+        Password = wachtwoord;
+        Geboortedatum = geboortedatum;
+        Postcode = postcode;
+        Telefoonnummer = telefoonnummer;
     }
 
     public void ChangeEmail(string emailadres)
@@ -56,14 +56,28 @@ public class Account
     {
         Telefoonnummer = telefoonnummer;
     }
-     public static void SaveAccountInformationToJson()
+    public static void SaveAccountInformationToJson()
     {
 
         string acc_json = JsonConvert.SerializeObject(Accounts, Formatting.Indented);
         File.WriteAllText(filepath, acc_json);
         
     }
-    
+    public static void VoegAccountToe(string name, string emailadres, string wachtwoord, string geboortedatum, string postcode, string telefoonnummer)
+    {
+        LoadAccountsFromJson();
+        var nieuweAccount = new Account(name, emailadres, wachtwoord, geboortedatum, postcode, telefoonnummer);
+        Accounts.Add(nieuweAccount);
+        SaveAccountInformationToJson();
 
+    }
+    private static void LoadAccountsFromJson()
+    {
+        if (File.Exists(filepath))
+        {
+            string json = File.ReadAllText(filepath);
+            Accounts = JsonConvert.DeserializeObject<List<Account>>(json) ?? new List<Account>();
+        }
+    }
 
 }
