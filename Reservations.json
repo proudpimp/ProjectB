@@ -1,16 +1,1 @@
-[
-  {
-    "GastNaam": "Sercan",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-12-12T15:00:00",
-    "TableCode": "6A",
-    "Notitie": "hellothere"
-  },
-  {
-    "GastNaam": "Shraggy",
-    "AantalPersonen": 5,
-    "DatumTijd": "2024-07-18T15:00:00",
-    "TableCode": "6B",
-    "Notitie": "Scooby snacks"
-  }
-]
+[]

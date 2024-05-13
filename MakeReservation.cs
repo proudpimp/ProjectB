@@ -33,6 +33,35 @@ public static class MakeReservation
             return;
         }
 
+        if (aantalPersonen == 6)
+        {
+            if (!Reserveringen.IsTableAvailable("6A", datumTijd) && !Reserveringen.IsTableAvailable("6B", datumTijd))
+            {
+                Console.WriteLine("Unfortunately, we do not have availability for 6 people as all suitable tables are reserved. Please try a different date or reduce the number of people.");
+                return;
+            }
+        }
+        else if (aantalPersonen == 4)
+        {
+            if (!Reserveringen.IsTableAvailable("4A", datumTijd) && !Reserveringen.IsTableAvailable("4B", datumTijd) &&
+                !Reserveringen.IsTableAvailable("4C", datumTijd) && !Reserveringen.IsTableAvailable("4D", datumTijd))
+            {
+                Console.WriteLine("Unfortunately, we do not have availability for 4 people as all suitable tables are reserved. Please try a different date or reduce the number of people.");
+                return;
+            }
+        }
+        else if (aantalPersonen == 2)
+        {
+            if (!Reserveringen.IsTableAvailable("2A", datumTijd) && !Reserveringen.IsTableAvailable("2B", datumTijd) &&
+                !Reserveringen.IsTableAvailable("2C", datumTijd) && !Reserveringen.IsTableAvailable("2D", datumTijd)&&
+                !Reserveringen.IsTableAvailable("2E", datumTijd) && !Reserveringen.IsTableAvailable("2F", datumTijd) &&
+                !Reserveringen.IsTableAvailable("2G", datumTijd) && !Reserveringen.IsTableAvailable("2H", datumTijd))
+            {
+                Console.WriteLine("Unfortunately, we do not have availability for 2 people as all suitable tables are reserved. Please try a different date or reduce the number of people.");
+                return;
+            }
+        }
+
         Console.WriteLine("\nChoose your table by entering the table code (e.g., 6A, 4C):");
         Console.WriteLine("\nRestaurant Table Map:");
         Console.WriteLine("  [4A]                              [4B]");
@@ -99,7 +128,7 @@ public static class MakeReservation
         string tableCode;
         while (true)
         {
-            tableCode = Console.ReadLine();
+            tableCode = Console.ReadLine().ToUpper();
             if (restrictedTableCodes.Contains(tableCode, StringComparer.OrdinalIgnoreCase) && Reserveringen.IsTableAvailable(tableCode, datumTijd))
             {
                 break;
