@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-
-
-static class Program
+﻿static class Program
 {
-
     public static void Main()
     {
         while (true)
@@ -44,10 +40,7 @@ static class Program
                     break;
 
                 case "6":
-                    Console.WriteLine("We have:");
-                    Console.WriteLine("- Eight two-person tables,");
-                    Console.WriteLine("- Five four-person tables,");
-                    Console.WriteLine("- Two six-person tables.");
+                    TableDetails.Details();
                     break;
                     
                 case "7":
