@@ -19,8 +19,12 @@ public static class AdjustReservation
             System.Console.WriteLine("-------------------------------------");
 
             System.Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
-            string nieuweDatumTijd = Console.ReadLine();
-            reservation.DatumTijd = DateTime.ParseExact(nieuweDatumTijd, "yyyy-MM-dd HH:mm", null);
+            DateTime nieuweaDatumTijd;
+            while(!DateTime.TryParse(Console.ReadLine(), out nieuweaDatumTijd) || nieuweaDatumTijd < DateTime.Now)
+            {
+                System.Console.WriteLine("Invalid date. Please enter a future date and time in the format yyyy-mm-dd hh:mm:");
+            }
+            reservation.DatumTijd = nieuweaDatumTijd;
             Reserveringen.SaveReservationsToJson();
             Console.WriteLine("The reservation has been adjusted.");
         }
