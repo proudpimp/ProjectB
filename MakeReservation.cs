@@ -1,7 +1,7 @@
 public static class MakeReservation
 {
 
-    static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "6A", "6B" };
+    static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "4E", "6A", "6B" };
     public static void Make()
     {
         DateTime datumTijd;
@@ -17,6 +17,13 @@ public static class MakeReservation
 
         Console.Write("Fill in your name: ");
         string naam = Console.ReadLine();
+        while (string.IsNullOrWhiteSpace(naam))
+        {
+            Console.WriteLine("Name cannot be left blank. Please enter your name.");
+            Console.WriteLine("Fill in your name: ");
+            naam = Console.ReadLine();
+        }
+
 
         Console.Write("How many people: ");
         int aantalPersonen;
@@ -44,7 +51,8 @@ public static class MakeReservation
         else if (aantalPersonen == 4)
         {
             if (!Reserveringen.IsTableAvailable("4A", datumTijd) && !Reserveringen.IsTableAvailable("4B", datumTijd) &&
-                !Reserveringen.IsTableAvailable("4C", datumTijd) && !Reserveringen.IsTableAvailable("4D", datumTijd))
+                !Reserveringen.IsTableAvailable("4C", datumTijd) && !Reserveringen.IsTableAvailable("4D", datumTijd)
+                && !Reserveringen.IsTableAvailable("4E", datumTijd))
             {
                 Console.WriteLine("Unfortunately, we do not have availability for 4 people as all suitable tables are reserved. Please try a different date or reduce the number of people.");
                 return;
@@ -67,7 +75,7 @@ public static class MakeReservation
         Console.WriteLine("  [4A]                              [4B]");
         Console.WriteLine("                   [6A]                 ");
         Console.WriteLine("[2A]   [2B]                    [2C]   [2D]");
-        Console.WriteLine("");
+        Console.WriteLine("                   [4E]                 ");
         Console.WriteLine("[2E]   [2F]                    [2G]   [2H]");
         Console.WriteLine("                   [6B]                 ");
         Console.WriteLine("  [4C]                               [4D]");

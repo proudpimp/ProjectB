@@ -1,16 +1,1 @@
-[
-  {
-    "GastNaam": "Ahmet",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-05-14T12:00:00",
-    "TableCode": "6A",
-    "Notitie": ""
-  },
-  {
-    "GastNaam": "Sercan",
-    "AantalPersonen": 4,
-    "DatumTijd": "2024-12-12T15:00:00",
-    "TableCode": "4A",
-    "Notitie": ""
-  }
-]
+[]
