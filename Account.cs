@@ -20,16 +20,16 @@ public class Account
             }
         }
     }
-    public string Name;
-    public string Emailadress; 
+    public string Name {get;set;}
+    public string Emailadress {get;set;}
 
-    public string Password; 
+    public string Password {get;set;}
 
-    public DateTime BirthOfDate;
+    public DateTime BirthOfDate {get;set;}
 
-    public string Postcode;
+    public string Postcode  {get;set;}
 
-    public string PhoneNumber;
+    public string PhoneNumber {get;set;}
 
     public Account(string name, string emailadress, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
@@ -62,12 +62,13 @@ public class Account
         File.WriteAllText(filepath, acc_json);
         
     }
-    public static void VoegAccountToe(string name, string emailadres, string password, DateTime birthOfDate, string postcode, string phoneNumber)
+    public static bool VoegAccountToe(string name, string emailadres, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
         LoadAccountsFromJson();
         var nieuweAccount = new Account(name, emailadres, password, birthOfDate, postcode, phoneNumber);
         Accounts.Add(nieuweAccount);
         SaveAccountInformationToJson();
+        return true;
 
     }
     private static void LoadAccountsFromJson()

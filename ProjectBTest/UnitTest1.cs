@@ -60,5 +60,17 @@ namespace ProjectBTest
             var result = Reserveringen.AnnuleerReservering(fakeNaam);
             Assert.IsFalse(result);
         }
+        [TestMethod]
+        public void MakeAccount_True()
+        {
+            string name = "John Doe";
+            string email = "jdoe@gmail.com";
+            string password = "JohnDoe1";
+            DateTime birthday = DateTime.Now.AddYears(-5);
+            string postcode = "1212ZB";
+            string phoneNumber = "0612345678";
+            var result = Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber);
+            Assert.IsTrue(result);
+        }
     }
 }
