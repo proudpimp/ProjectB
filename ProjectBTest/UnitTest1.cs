@@ -11,7 +11,7 @@ namespace ProjectBTest
         {
             string guestName = "John Doe";
             int numberOfPeople = 4;
-            DateTime reservationDateTime = DateTime.Now.AddHours(15);
+            DateTime reservationDateTime = DateTime.Now.AddDays(1);
             string note = "Vegetarian";
             string tcode = "4A";
 
@@ -25,7 +25,7 @@ namespace ProjectBTest
         {
             string guestName = "Jane Doe";
             int numberOfPeople = 2;
-            DateTime reservationDateTime = DateTime.Now.AddHours(-5);
+            DateTime reservationDateTime = DateTime.Now;
             string note = "Gluten Free";
             string tcode = "2B";
             
@@ -38,7 +38,7 @@ namespace ProjectBTest
         {
             string guestName = "John Doe";
             int numberOfPeople = 4;
-            DateTime reservationDateTime = DateTime.Now.AddHours(-5);
+            DateTime reservationDateTime = DateTime.Now;
             string note = "Vegan";
             string tcode = "4B";
             Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note);
@@ -51,7 +51,7 @@ namespace ProjectBTest
         {
             string guestName = "John Doe";
             int numberOfPeople = 4;
-            DateTime reservationDateTime = DateTime.Now.AddHours(-5);
+            DateTime reservationDateTime = DateTime.Now;
             string note = "Vegan";
             string tcode = "4B";
             Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note);

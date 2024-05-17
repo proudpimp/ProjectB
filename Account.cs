@@ -25,13 +25,13 @@ public class Account
 
     public string Password; 
 
-    public string BirthOfDate;
+    public DateTime BirthOfDate;
 
-    public string Postcode; 
+    public string Postcode;
 
     public string PhoneNumber;
 
-    public Account(string name, string emailadress, string password, string birthOfDate, string postcode, string phoneNumber)
+    public Account(string name, string emailadress, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
         Name = name;
         Emailadress = emailadress;
@@ -62,7 +62,7 @@ public class Account
         File.WriteAllText(filepath, acc_json);
         
     }
-    public static void VoegAccountToe(string name, string emailadres, string password, string birthOfDate, string postcode, string phoneNumber)
+    public static void VoegAccountToe(string name, string emailadres, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
         LoadAccountsFromJson();
         var nieuweAccount = new Account(name, emailadres, password, birthOfDate, postcode, phoneNumber);
