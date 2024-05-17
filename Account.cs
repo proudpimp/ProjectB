@@ -25,21 +25,20 @@ public class Account
 
     public string Password; 
 
-    public string Geboortedatum;
+    public string BirthOfDate;
 
     public string Postcode; 
 
-    public string Telefoonnummer; 
+    public string PhoneNumber;
 
-
-    public Account(string naam, string emailadres, string wachtwoord, string geboortedatum, string postcode, string telefoonnummer)
+    public Account(string name, string emailadress, string password, string birthOfDate, string postcode, string phoneNumber)
     {
-        Name = naam;
-        Emailadress = emailadres;
-        Password = wachtwoord;
-        Geboortedatum = geboortedatum;
+        Name = name;
+        Emailadress = emailadress;
+        Password = password;
+        BirthOfDate = birthOfDate;
         Postcode = postcode;
-        Telefoonnummer = telefoonnummer;
+        PhoneNumber = phoneNumber;
     }
 
     public void ChangeEmail(string emailadres)
@@ -52,9 +51,9 @@ public class Account
     {
         Password = password; 
     }
-    public void ChangePhoneNumber(string telefoonnummer)
+    public void ChangePhoneNumber(string phoneNumber)
     {
-        Telefoonnummer = telefoonnummer;
+        PhoneNumber = phoneNumber;
     }
     public static void SaveAccountInformationToJson()
     {
@@ -63,10 +62,10 @@ public class Account
         File.WriteAllText(filepath, acc_json);
         
     }
-    public static void VoegAccountToe(string name, string emailadres, string wachtwoord, string geboortedatum, string postcode, string telefoonnummer)
+    public static void VoegAccountToe(string name, string emailadres, string password, string birthOfDate, string postcode, string phoneNumber)
     {
         LoadAccountsFromJson();
-        var nieuweAccount = new Account(name, emailadres, wachtwoord, geboortedatum, postcode, telefoonnummer);
+        var nieuweAccount = new Account(name, emailadres, password, birthOfDate, postcode, phoneNumber);
         Accounts.Add(nieuweAccount);
         SaveAccountInformationToJson();
 
