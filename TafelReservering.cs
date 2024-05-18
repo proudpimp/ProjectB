@@ -9,8 +9,9 @@ public class TafelReservering
     public int TafelType { get; set; }
     public string TableCode {get; set;}
     public string Notitie{get;set;}
+    public int SafetyNumber {get;set;}
 
-    public TafelReservering(string gastNaam, int aantalPersonen, DateTime datumTijd, int tafelType, string tableCode, string notitie)
+    public TafelReservering(string gastNaam, int aantalPersonen, DateTime datumTijd, int tafelType, string tableCode, string notitie,int safetyNumber)
     {
         GastNaam = gastNaam;
         AantalPersonen = aantalPersonen;
@@ -18,5 +19,6 @@ public class TafelReservering
         TafelType = tafelType;
         TableCode = tableCode;
         Notitie = notitie;
+        SafetyNumber = safetyNumber;
     }
 }

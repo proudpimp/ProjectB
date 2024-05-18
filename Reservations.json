@@ -1,9 +1,10 @@
 [
   {
-    "GastNaam": "Dhr Eliano",
+    "GastNaam": "Sercan",
     "AantalPersonen": 4,
-    "DatumTijd": "2024-07-25T15:00:00",
+    "DatumTijd": "2024-12-12T15:00:00",
     "TableCode": "4A",
-    "Notitie": "extra crispy"
+    "Notitie": "",
+    "SafetyNumber": 9702
   }
 ]

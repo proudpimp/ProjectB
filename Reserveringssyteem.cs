@@ -47,7 +47,7 @@ public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
 
 }
 
-public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
+public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie,int safetyNumber)
 {
     if (datumTijd < DateTime.Now)
     {
@@ -70,7 +70,7 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
         return false;
     }
     
-    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
+    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie,safetyNumber);
     reserveringen.Add(nieuweReservering);
     Console.WriteLine("Reservation successfully added for " + gastNaam);
 
@@ -83,6 +83,7 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
                             $"Amount of people: {aantalPersonen}\n" +
                             $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
                             $"TableCode: {tableCode}\n" +
+                            $"SafetyNumber: {safetyNumber}" +
                             $"Note: {notitie}";
 
 
@@ -120,10 +121,22 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
 
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
-
-    public static bool AnnuleerReservering(string gastNaam)
+    public static bool IsMagicNumberEqual(int safetyNumber)
     {
-        var reservering = GetReservationByName(gastNaam);
+        foreach (var number in reserveringen)
+        {
+            if (number.SafetyNumber == safetyNumber)
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public static bool AnnuleerReservering(string gastNaam,int SafetyNumber)
+    {
+        var reservering = GetReservationByName(gastNaam,SafetyNumber);
         if (reservering != null)
         {
             reserveringen.Remove(reservering);
@@ -152,9 +165,16 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
         }
     }
 
-    public static TafelReservering? GetReservationByName(string guestName)
+    public static TafelReservering? GetReservationByName(string gastNaam, int safetyNumber)
     {
-        return reserveringen.FirstOrDefault(r => r.GastNaam.Equals(guestName, StringComparison.OrdinalIgnoreCase));
+        foreach (var reservering in reserveringen)
+        {
+            if (reservering.GastNaam == gastNaam && reservering.SafetyNumber == safetyNumber)
+            {
+                return reservering;
+            }
+        }
+        return null;
     }
 
 

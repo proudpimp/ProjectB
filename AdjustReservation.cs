@@ -5,8 +5,14 @@ public static class AdjustReservation
         System.Console.WriteLine("Adjust reservation");
         System.Console.WriteLine("Enter the name of the person who made the reservation:");
         string zoekNaam = Console.ReadLine();
+        System.Console.WriteLine("Enter the magic code");
+        int safetyNum;
+        while(!int.TryParse(Console.ReadLine(),out safetyNum) || Reserveringen.IsMagicNumberEqual(safetyNum) == false)
+        {
+            System.Console.WriteLine("Invalid input. Please enter a valid 4 digit number. ");
+        }
         
-        var reservation = Reserveringen.GetReservationByName(zoekNaam);
+        var reservation = Reserveringen.GetReservationByName(zoekNaam,safetyNum);
         if(reservation != null)
         {
             System.Console.WriteLine("Your current reservation details:");

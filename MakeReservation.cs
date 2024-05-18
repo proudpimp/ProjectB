@@ -2,8 +2,10 @@ public static class MakeReservation
 {
 
     static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "4E", "6A", "6B" };
+    static readonly Random random = new Random();
     public static void Make()
     {
+        int safetyNumber = random.Next(1000,10000);
         DateTime datumTijd;
         Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
         while (!DateTime.TryParse(Console.ReadLine(), out datumTijd) || datumTijd < DateTime.Now || datumTijd.Hour < 12 || datumTijd.Hour >= 22)
@@ -206,6 +208,6 @@ public static class MakeReservation
             }
         }
 
-        Reserveringen.VoegReserveringToe(naam, aantalPersonen, datumTijd, tableCode, notitieZelf);
+        Reserveringen.VoegReserveringToe(naam, aantalPersonen, datumTijd, tableCode, notitieZelf,safetyNumber);
     }
 }
