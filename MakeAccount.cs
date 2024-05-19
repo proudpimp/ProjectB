@@ -11,7 +11,8 @@ public static class MakeAccount
         }
         System.Console.WriteLine("Fill in your Emailadress: ");
         string eadres = Console.ReadLine();
-        while(string.IsNullOrWhiteSpace(eadres))
+        while(string.IsNullOrWhiteSpace(eadres)|| !eadres.EndsWith("@gmail.com") && !eadres.EndsWith("@hotmail.com") && !eadres.EndsWith("@icloud.com")
+            && !eadres.EndsWith("@outlook.com") && !eadres.EndsWith("@yahoo.com") && !eadres.EndsWith("@proton.me") && !eadres.EndsWith("@aol.com"))
         {
             Console.WriteLine("Email adress cannot be left blank. Please enter a valid Email adress.");
             eadres = Console.ReadLine();
