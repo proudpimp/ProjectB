@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 public class Account
 {
     private static List<Account> Accounts = new();
+
     private static string filepath
     {
         get
@@ -31,6 +32,10 @@ public class Account
 
     public string PhoneNumber {get;set;}
 
+    static Account()
+    {
+        LoadAccountsFromJson();
+    }
     public Account(string name, string emailadress, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
         Name = name;
@@ -64,12 +69,24 @@ public class Account
     }
     public static bool VoegAccountToe(string name, string emailadres, string password, DateTime birthOfDate, string postcode, string phoneNumber)
     {
-        LoadAccountsFromJson();
         var nieuweAccount = new Account(name, emailadres, password, birthOfDate, postcode, phoneNumber);
         Accounts.Add(nieuweAccount);
         SaveAccountInformationToJson();
         return true;
 
+    }
+    public static bool AccountExists(string emailadres,string password)
+    {
+        foreach (var account in Accounts)
+        {
+            if (account.Emailadress == emailadres && account.Password == password)
+            {
+                System.Console.WriteLine("You have succesfully logged in.");
+                return true;
+            }
+        }
+        System.Console.WriteLine("The credentials are not correct.");
+        return false;
     }
     private static void LoadAccountsFromJson()
     {
