@@ -16,7 +16,7 @@ public static class MakeAccount
         while(string.IsNullOrWhiteSpace(eadres)|| !eadres.EndsWith("@gmail.com") && !eadres.EndsWith("@hotmail.com") && !eadres.EndsWith("@icloud.com")
             && !eadres.EndsWith("@outlook.com") && !eadres.EndsWith("@yahoo.com") && !eadres.EndsWith("@proton.me") && !eadres.EndsWith("@aol.com"))
         {
-            Console.WriteLine("Email adress cannot be left blank. Please enter a valid Email adress.");
+            Console.WriteLine("Please enter a valid email address. We only accept email addresses from the following domains: @gmail.com, @hotmail.com, @icloud.com, @yahoo.com, @proton.me, @aol.com.");
             eadres = Console.ReadLine();
         }
         string password;

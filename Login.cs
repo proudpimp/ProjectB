@@ -9,11 +9,11 @@ public static class Login
             Console.WriteLine("Email adress cannot be left blank. Please enter a valid Email adress.");
             emailadress = Console.ReadLine();
         }
-        System.Console.WriteLine("Enter your passowrd: ");
+        System.Console.WriteLine("Enter your password: ");
         string password = Console.ReadLine();
-        while(string.IsNullOrWhiteSpace(password))
+        while(password.Length <8)
         {
-            Console.WriteLine("Password cannot be empty.Please enter a valid Email adress.");
+            Console.WriteLine("Password cannot be empty or less than 8 characters.");
             password = Console.ReadLine();
         }
 

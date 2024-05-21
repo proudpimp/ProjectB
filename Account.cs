@@ -26,7 +26,7 @@ public class Account
 
     public string Password {get;set;}
 
-    public DateTime BirthOfDate {get;set;}
+    public DateTime DateOfBirth {get;set;}
 
     public string Postcode  {get;set;}
 
@@ -38,12 +38,12 @@ public class Account
     {
         LoadAccountsFromJson();
     }
-    public Account(string name, string emailadress, string password, DateTime birthOfDate, string postcode, string phoneNumber,int verificationNumber)
+    public Account(string name, string emailadress, string password, DateTime dateOfBirth, string postcode, string phoneNumber,int verificationNumber)
     {
         Name = name;
         Emailadress = emailadress;
         Password = password;
-        BirthOfDate = birthOfDate;
+        DateOfBirth = dateOfBirth;
         Postcode = postcode;
         PhoneNumber = phoneNumber;
         this.verificationNumber = verificationNumber;
@@ -70,9 +70,9 @@ public class Account
         File.WriteAllText(filepath, acc_json);
         
     }
-    public static bool VoegAccountToe(string name, string emailadres, string password, DateTime birthOfDate, string postcode, string phoneNumber,int verificationNumber)
+    public static bool VoegAccountToe(string name, string emailadres, string password, DateTime dateOfBirth, string postcode, string phoneNumber,int verificationNumber)
     {
-        var nieuweAccount = new Account(name, emailadres, password, birthOfDate, postcode, phoneNumber,verificationNumber);
+        var nieuweAccount = new Account(name, emailadres, password, dateOfBirth, postcode, phoneNumber,verificationNumber);
         Accounts.Add(nieuweAccount);
         SaveAccountInformationToJson();
         return true;
