@@ -7,8 +7,9 @@
             Console.WriteLine("\nWelcome at Jake's restaurant");
             Console.WriteLine("1) Login");
             Console.WriteLine("2) Continue as guest");
-            Console.WriteLine("3) Create an account");
-            Console.WriteLine("4) Quit");
+            Console.WriteLine("3) Delete Account");
+            Console.WriteLine("4) Create an account");
+            Console.WriteLine("5) Quit");
 
             Console.Write("Make a choice: ");
             string choice = Console.ReadLine();
@@ -57,11 +58,14 @@
                         }
                         break;
                 case "3":
-                    MakeAccount.NewAccount();
+                    DeleteAccount.ThisAccount();
                     break;
                 case "4":
-                    System.Console.WriteLine("Quit");
+                    MakeAccount.NewAccount();
                     break;
+                case "5":
+                    System.Console.WriteLine("Quit");
+                    return;
                 default:
                     Console.WriteLine("Invalid choice, Choose a valid option");
                     break;

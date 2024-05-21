@@ -1,7 +1,9 @@
 public static class MakeAccount
 {
+    static readonly Random random = new Random();
     public static void NewAccount()
     {
+        int verificationNum = random.Next(1000,10000);
         System.Console.WriteLine("Fill in your name: ");
         string name = Console.ReadLine();
         while (string.IsNullOrWhiteSpace(name))
@@ -56,6 +58,6 @@ public static class MakeAccount
             }
         } while (phoneNumber.Length != 10 || !phoneNumber.StartsWith("06"));
 
-        Account.VoegAccountToe(name,eadres,password,birthday,postcode,phoneNumber);
+        Account.VoegAccountToe(name,eadres,password,birthday,postcode,phoneNumber,verificationNum);
     }
 }
