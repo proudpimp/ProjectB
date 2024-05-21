@@ -4,9 +4,10 @@ public static class DeleteAccount
     {
         System.Console.WriteLine("Enter your emailadress: ");
         string emailadress  = Console.ReadLine();
-        while(string.IsNullOrWhiteSpace(emailadress))
+        while(string.IsNullOrWhiteSpace(emailadress)|| !emailadress.EndsWith("@gmail.com") && !emailadress.EndsWith("@hotmail.com") && !emailadress.EndsWith("@icloud.com")
+            && !emailadress.EndsWith("@outlook.com") && !emailadress.EndsWith("@yahoo.com") && !emailadress.EndsWith("@proton.me") && !emailadress.EndsWith("@aol.com"))
         {
-            Console.WriteLine("Email adress cannot be left blank. Please enter a valid Email adress.");
+            Console.WriteLine("Please enter a valid email address. We only accept email addresses from the following domains: @gmail.com, @hotmail.com, @icloud.com, @yahoo.com, @proton.me, @aol.com.");
             emailadress = Console.ReadLine();
         }
         System.Console.WriteLine("Enter your password: ");

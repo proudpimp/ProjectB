@@ -74,6 +74,20 @@ public class Account
     {
         var nieuweAccount = new Account(name, emailadres, password, dateOfBirth, postcode, phoneNumber,verificationNumber);
         Accounts.Add(nieuweAccount);
+        System.Console.WriteLine($"Account succesfully created for {name}");
+        string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string fileName = $"Account_{name}_Confirmation.txt";
+        string fullPath = Path.Combine(folderPath, fileName);
+        string bevestigingTekst = "Thank you for creating an account at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your account:\n\n" +
+                            $"Name: {name}\n" +
+                            $"Emailadress: {emailadres}\n" +
+                            $"Password: {password}\n" +
+                            $"DateOfBirth: {dateOfBirth}\n" +
+                            $"Postcode: {postcode}\n" +
+                            $"PhoneNumber: {phoneNumber}\n" +
+                            $"**VerificationNumber: {verificationNumber}";
+        File.WriteAllText(fullPath,bevestigingTekst);
+        System.Console.WriteLine($"The account creation confirmation has been succesfully saved for {name} in {fullPath}.");
         SaveAccountInformationToJson();
         return true;
 
