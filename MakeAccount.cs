@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 public static class MakeAccount
 {
     static readonly Random random = new Random();
@@ -13,10 +15,10 @@ public static class MakeAccount
         }
         System.Console.WriteLine("Fill in your Emailadress: ");
         string eadres = Console.ReadLine();
-        while(string.IsNullOrWhiteSpace(eadres)|| !eadres.EndsWith("@gmail.com") && !eadres.EndsWith("@hotmail.com") && !eadres.EndsWith("@icloud.com")
-            && !eadres.EndsWith("@outlook.com") && !eadres.EndsWith("@yahoo.com") && !eadres.EndsWith("@proton.me") && !eadres.EndsWith("@aol.com"))
+        string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        while(string.IsNullOrWhiteSpace(eadres) || !Regex.IsMatch(eadres, emailPattern))
         {
-            Console.WriteLine("Please enter a valid email address. We only accept email addresses from the following domains: @gmail.com, @hotmail.com, @icloud.com, @yahoo.com, @proton.me, @aol.com.");
+            Console.WriteLine("Please enter a valid email address.");
             eadres = Console.ReadLine();
         }
         string password;
