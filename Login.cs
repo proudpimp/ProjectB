@@ -14,7 +14,7 @@ public static class Login
         string password = Console.ReadLine();
         while(password.Length <8)
         {
-            Console.WriteLine("Password cannot be empty or less than 8 characters.");
+            Console.WriteLine("Password cannot be less than 8 characters.");
             password = Console.ReadLine();
         }
 
@@ -25,7 +25,8 @@ public static class Login
         }
         else
         {
-            System.Console.WriteLine("The credentials are not correct.");
+            System.Console.WriteLine("The credentials are not correct. Try again.");
+            ToAccount();
             return false;
         }
 

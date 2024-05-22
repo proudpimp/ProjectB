@@ -26,7 +26,7 @@ public static class MakeAccount
             password = Console.ReadLine();
             if(password.Length <8)
             {
-                System.Console.WriteLine($"Password cannot be empty or less than 8 characters.");
+                System.Console.WriteLine($"Password cannot be less than 8 characters.");
             }
         } while (password.Length <8);
         DateTime birthday;
