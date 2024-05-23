@@ -9,8 +9,8 @@ public static class MenuAfter
             Console.WriteLine("3) Cancel a reservation");
             Console.WriteLine("4) Adjust a reservation");
             Console.WriteLine("5) Update contact information");
-            Console.WriteLine("6) View special offers and discounts");
-            Console.WriteLine("7) View and edit personal details");
+            Console.WriteLine("6) View your points");
+            Console.WriteLine("7) View and personal details");
             Console.WriteLine("8) Change password");
             Console.WriteLine("9) Menu");
             Console.WriteLine("10) Table details");
@@ -22,6 +22,27 @@ public static class MenuAfter
                     MyReservations.View();
                     break;
                 case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                case "7":
+                    break;
+                case "8":
+                    break;
+                case "9":
+                    break;
+                case "10":
+                    break;
+                case "11":
+                    break;
+                default:
+                    System.Console.WriteLine("Invalid choice");
                     break;
             }
 

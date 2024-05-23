@@ -24,6 +24,7 @@ public static class Login
             if(Account.AccountExists(emailadress,password))
             {
                 System.Console.WriteLine("You have succesfully logged in.");
+                MenuAfter.Log();
                 return true;
             }
             else
