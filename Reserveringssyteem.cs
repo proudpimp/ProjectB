@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 public static class Reserveringen
 {
     private static List<TafelReservering> reserveringen = new List<TafelReservering>();
+    private static List<TafelReserveringForEmail> reserveringenForAcc = new List<TafelReserveringForEmail>();
+
     private static string JsonFilePath
     {
         get
@@ -21,6 +23,22 @@ public static class Reserveringen
             }
         }
     }
+        private static string JsonFilePathForAcc
+    {
+        get
+        {
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "GitHub", "ProjectB", "ReservationsForAcc.json");
+            }
+            else
+            {
+                return "./ReservationsForAcc.json";
+            }
+        }
+    }
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
@@ -28,6 +46,7 @@ public static class Reserveringen
     static Reserveringen()
     {
         LoadReservationsFromJson();
+        LoadReservationsFromJsonForAcc();
     }
 
 public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
@@ -99,6 +118,58 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
     SaveReservationsToJson();
     return true;
 }
+public static bool VoegReserveringToeEmail(string email,string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
+{
+
+    if (datumTijd < DateTime.Now)
+    {
+        Console.WriteLine("You cannot make a reservation for a past date and time.");
+        return false;
+    }
+
+    int reservationHour = datumTijd.Hour;
+
+    if (reservationHour < 12 || reservationHour > 21)
+    {
+        Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
+        return false;
+    }
+    
+    int tafelType = BepaalTafelType(aantalPersonen);
+    if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
+    {
+        Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
+        return false;
+    }
+    
+    var nieuweReservering = new TafelReserveringForEmail(email,gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
+    reserveringenForAcc.Add(nieuweReservering);
+    Console.WriteLine("Reservation successfully added for " + gastNaam);
+
+    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
+    string fullPath = Path.Combine(folderPath, fileName);
+
+    string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
+                            $"Reservation for {gastNaam}\n" +
+                            $"Amount of people: {aantalPersonen}\n" +
+                            $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
+                            $"TableCode: {tableCode}\n" +
+                            $"Note: {notitie}";
+
+
+    try
+    {
+        File.WriteAllText(fullPath, bevestigingTekst);
+        Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
+    }
+    SaveReservationsToJsonForAcc();
+    return true;
+}
 
     public static int BepaalTafelType(int aantalPersonen)
     {
@@ -163,6 +234,20 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
             string json = File.ReadAllText(JsonFilePath);
             reserveringen = JsonConvert.DeserializeObject<List<TafelReservering>>(json) ?? new List<TafelReservering>();
         }
+    }
+        public static void SaveReservationsToJsonForAcc()
+    {
+        string json = JsonConvert.SerializeObject(reserveringenForAcc, Formatting.Indented);
+        File.WriteAllText(JsonFilePathForAcc, json);
+    }
+
+    private static void LoadReservationsFromJsonForAcc()
+    {
+    if (File.Exists(JsonFilePathForAcc))
+    {
+        string jsonAcc = File.ReadAllText(JsonFilePathForAcc);
+        reserveringenForAcc = JsonConvert.DeserializeObject<List<TafelReserveringForEmail>>(jsonAcc) ?? new List<TafelReserveringForEmail>();
+    }
     }
 
     public static TafelReservering? GetReservationByName(string gastNaam, int safetyNumber)

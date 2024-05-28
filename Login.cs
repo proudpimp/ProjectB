@@ -1,6 +1,9 @@
 using System.Text.RegularExpressions;
 public static class Login
 {
+    public static string CurrentUserEmail{get;set;}
+    public static string CurrentUserName{get;set;}
+
     public static bool ToAccount()
     {
         while(true)
@@ -31,6 +34,7 @@ public static class Login
             {
                 System.Console.WriteLine("The credentials are not correct. Try again.");
             }
+            CurrentUserEmail = emailadress;
         }
 
     }
