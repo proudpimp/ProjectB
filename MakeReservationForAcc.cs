@@ -15,15 +15,7 @@ public static class MakeReservationFor
 
         Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-MM-dd HH:mm"));
         Reserveringen.GetAvailableTablesForDay(datumTijd);
-
-        Console.Write("Fill in your name: ");
-        string naam = Console.ReadLine();
-        while (string.IsNullOrWhiteSpace(naam))
-        {
-            Console.WriteLine("Name cannot be left blank. Please enter your name.");
-            Console.WriteLine("Fill in your name: ");
-            naam = Console.ReadLine();
-        }
+        string naam = Login.CurrentUserName;
 
 
         Console.Write("How many people: ");

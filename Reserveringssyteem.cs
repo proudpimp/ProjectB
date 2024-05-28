@@ -68,6 +68,7 @@ public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
 
 public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie,int safetyNumber)
 {
+
     if (datumTijd < DateTime.Now)
     {
         Console.WriteLine("You cannot make a reservation for a past date and time.");
@@ -120,7 +121,6 @@ public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateT
 }
 public static bool VoegReserveringToeEmail(string email,string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
 {
-
     if (datumTijd < DateTime.Now)
     {
         Console.WriteLine("You cannot make a reservation for a past date and time.");

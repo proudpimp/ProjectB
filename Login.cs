@@ -26,6 +26,8 @@ public static class Login
 
             if(Account.AccountExists(emailadress,password))
             {
+                CurrentUserEmail = emailadress;
+                CurrentUserName = Account.GetUserName(emailadress);
                 System.Console.WriteLine("You have succesfully logged in.");
                 MenuAfter.Log();
                 return true;
@@ -34,7 +36,6 @@ public static class Login
             {
                 System.Console.WriteLine("The credentials are not correct. Try again.");
             }
-            CurrentUserEmail = emailadress;
         }
 
     }

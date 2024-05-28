@@ -116,6 +116,17 @@ public class Account
         }
         return false;
     }
+    public static string GetUserName(string email)
+    {
+        foreach(var account in Accounts)
+        {
+            if(account.Emailadress == email)
+            {
+                return account.Name;
+            }
+        }
+        return null;
+    }
     private static void LoadAccountsFromJson()
     {
         if (File.Exists(filepath))
