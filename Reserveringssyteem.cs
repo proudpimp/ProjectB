@@ -261,6 +261,17 @@ public static bool VoegReserveringToeEmail(string email,string gastNaam, int aan
         }
         return null;
     }
+    public static TafelReserveringForEmail? GetReservationByEmail(string email)
+    {
+        foreach (var reservering in reserveringenForAcc)
+        {
+            if (reservering.Email == email)
+            {
+                return reservering;
+            }
+        }
+        return null;
+    }
 
 
 public static void GetAvailableTablesForDay(DateTime date)
