@@ -19,7 +19,7 @@ public static class MenuAfter
             switch(choice)
             {
                 case "1":
-                    MyReservations.View();
+                    AccountReservations.View();
                     break;
                 case "2":
                     MakeReservationFor.Account();
