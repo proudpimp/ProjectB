@@ -25,6 +25,7 @@ public static class MenuAfter
                     MakeReservationFor.Account();
                     break;
                 case "3":
+                    AccountCancelation.Cancel();
                     break;
                 case "4":
                     break;

@@ -221,6 +221,48 @@ public static bool VoegReserveringToeEmail(string email,string gastNaam, int aan
             return false;
         }
     }
+
+
+public static bool AnnuleerReserveringforAcc(string email)
+    {   
+        var reservering = GetReservationByEmail(email);
+        if (reservering != null)
+        {
+            AccountReservations.View();
+            
+            Console.WriteLine("Enter the date and time of the reservation you would like to cancel");
+        
+            DateTime datetocancel;
+            
+            while (!DateTime.TryParse(Console.ReadLine(), out datetocancel))
+            {
+                Console.WriteLine("The date you entered is not valid date\nTry again.");
+                
+            }
+            foreach(var x in reserveringenForAcc)
+            {
+                if(x.DatumTijd == datetocancel)
+                {
+                    reserveringenForAcc.Remove(x);
+                    SaveReservationsToJsonForAcc();
+                    Console.WriteLine("Your reservation has been cancelled.");
+                    return true;
+                }
+                
+            }
+        }
+        else
+        {
+            Console.WriteLine("Your reservation has not been found");
+            return false;
+            
+        }
+        return false;
+        
+
+    }
+
+    
     public static void SaveReservationsToJson()
     {
         string json = JsonConvert.SerializeObject(reserveringen, Formatting.Indented);
