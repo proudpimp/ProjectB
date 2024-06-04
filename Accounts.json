@@ -16,5 +16,14 @@
     "Postcode": "2222dd",
     "PhoneNumber": "0612345678",
     "verificationNumber": 4501
+  },
+  {
+    "Name": "Ethan",
+    "Emailadress": "ethanmeulens533@gmail.com",
+    "Password": "ethangwn",
+    "DateOfBirth": "1999-12-05T00:00:00",
+    "Postcode": "3032CG",
+    "PhoneNumber": "0613789260",
+    "verificationNumber": 3230
   }
 ]

@@ -28,6 +28,8 @@ public static class MenuAfter
                     AccountCancelation.Cancel();
                     break;
                 case "4":
+                    new AdjustReservationforAcc().Adjust();
+                    
                     break;
                 case "5":
                     break;

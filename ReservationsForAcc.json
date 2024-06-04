@@ -2,14 +2,6 @@
   {
     "Email": "sercan@gmail.com",
     "GastNaam": "Sercan",
-    "AantalPersonen": 6,
-    "DatumTijd": "2024-12-12T15:00:00",
-    "TableCode": "6A",
-    "Notitie": ""
-  },
-  {
-    "Email": "sercan@gmail.com",
-    "GastNaam": "Sercan",
     "AantalPersonen": 5,
     "DatumTijd": "2024-12-12T15:00:00",
     "TableCode": "6B",
@@ -22,5 +14,13 @@
     "DatumTijd": "2024-12-12T15:00:00",
     "TableCode": "4B",
     "Notitie": "hello"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-06-28T18:00:00",
+    "TableCode": "4A",
+    "Notitie": "Celebration"
   }
 ]
