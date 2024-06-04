@@ -14,5 +14,13 @@
     "DatumTijd": "2024-12-05T16:00:00",
     "TableCode": "6B",
     "Notitie": ""
+  },
+  {
+    "SafetyNumber": 2537,
+    "GastNaam": "Ethan",
+    "AantalPersonen": 5,
+    "DatumTijd": "2024-12-05T18:00:00",
+    "TableCode": "6A",
+    "Notitie": "Bday"
   }
 ]

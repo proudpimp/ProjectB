@@ -37,11 +37,10 @@
                                 CancelReservation.Cancel();
                                 break;
                             case "3":
-                                AdjustReservation.Adjust();
+                                new AdjustReservation().Adjust();
                                 break;
                             case "4":
-                                RestaurantInfo restaurant = new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","12:00-22:00, Mon-Sat");
-                                System.Console.WriteLine(restaurant.Info());
+                                System.Console.WriteLine(new RestaurantInfo("Wijnhaven 107","3011 WN Rotterdam","+ 31 612316367","12:00-22:00, Mon-Sat").Info());
                                 break;
                             case "5":
                                 Menu.MenuChoice();

@@ -1,6 +1,6 @@
-public static class AdjustReservation
+public class AdjustReservation : IAdjust
 {
-    public static void Adjust()
+    public void Adjust()
     {
         System.Console.WriteLine("Adjust reservation");
         System.Console.WriteLine("Enter the name of the person who made the reservation:");
