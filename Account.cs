@@ -136,4 +136,14 @@ public class Account
         }
     }
 
+    public static List<Account> GetAccounts()
+    {
+        return Accounts;
+    }
+
+    public static Account GetAccount(string email)
+    {
+        return Accounts.First(account => account.Emailadress == email);
+    }
+
 }

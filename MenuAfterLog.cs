@@ -1,7 +1,12 @@
 public static class MenuAfter
 {
-    public static void Log()
+    private static Account loggedInAccount;
+
+    public static void Log(Account account)
     {
+        loggedInAccount = account; 
+
+        
         while(true)
         {
             Console.WriteLine("1) View my reservations");
@@ -29,7 +34,6 @@ public static class MenuAfter
                     break;
                 case "4":
                     new AdjustReservationforAcc().Adjust();
-                    
                     break;
                 case "5":
                     break;
@@ -38,6 +42,7 @@ public static class MenuAfter
                 case "7":
                     break;
                 case "8":
+                    ChangePasswordAccount.ChangePassw(loggedInAccount);
                     break;
                 case "9":
                     break;
