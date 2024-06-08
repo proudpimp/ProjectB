@@ -49,17 +49,16 @@ public class Account
         this.verificationNumber = verificationNumber;
     }
 
-    public void ChangeEmail(string emailadres)
-    {
-        Emailadress = emailadres;
-    }
-
 
     public void ChangePassword(string password)
     {
         Password = password; 
     }
     public void ChangePhoneNumber(string phoneNumber)
+    {
+        PhoneNumber = phoneNumber;
+    }
+    public void ChangePostcode(string phoneNumber)
     {
         PhoneNumber = phoneNumber;
     }

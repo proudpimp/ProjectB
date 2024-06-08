@@ -4,7 +4,7 @@ public static class MenuAfter
 
     public static void Log(Account account)
     {
-        loggedInAccount = account; 
+        loggedInAccount = account;
 
         
         while(true)
@@ -13,13 +13,10 @@ public static class MenuAfter
             Console.WriteLine("2) Make a new reservation");
             Console.WriteLine("3) Cancel a reservation");
             Console.WriteLine("4) Adjust a reservation");
-            Console.WriteLine("5) Update contact information");
-            Console.WriteLine("6) View your points");
-            Console.WriteLine("7) View and personal details");
-            Console.WriteLine("8) Change password");
-            Console.WriteLine("9) Menu");
-            Console.WriteLine("10) Table details");
-            Console.WriteLine("11) Logout");
+            Console.WriteLine("5) Update Account details");
+            Console.WriteLine("6) Menu");
+            Console.WriteLine("7) Table details");
+            Console.WriteLine("8) Logout");
             string choice = Console.ReadLine();
             switch(choice)
             {
@@ -36,20 +33,17 @@ public static class MenuAfter
                     new AdjustReservationforAcc().Adjust();
                     break;
                 case "5":
+                    UpdateAccountDetails.UpdateAccount(loggedInAccount);
                     break;
                 case "6":
+                    Menu.MenuChoice();
                     break;
                 case "7":
+                    TableDetails.Details();
                     break;
                 case "8":
-                    ChangePasswordAccount.ChangePassw(loggedInAccount);
-                    break;
-                case "9":
-                    break;
-                case "10":
-                    break;
-                case "11":
-                    break;
+                    Console.WriteLine("You have succesfully logged out.");
+                    return;
                 default:
                     System.Console.WriteLine("Invalid choice");
                     break;

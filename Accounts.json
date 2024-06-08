@@ -1,14 +1,5 @@
 [
   {
-    "Name": "HELLOBIM",
-    "Emailadress": "HELLOBIM@gmail.com",
-    "Password": "HELLOBIM123",
-    "DateOfBirth": "0001-01-01T00:00:00",
-    "Postcode": "2233EE",
-    "PhoneNumber": "0612345678",
-    "verificationNumber": 3008
-  },
-  {
     "Name": "Sercan",
     "Emailadress": "sercan@gmail.com",
     "Password": "Sercan12345",
@@ -20,7 +11,7 @@
   {
     "Name": "Ethan",
     "Emailadress": "ethanmeulens533@gmail.com",
-    "Password": "ethangwn",
+    "Password": "nosteigwn",
     "DateOfBirth": "1999-12-05T00:00:00",
     "Postcode": "3032CG",
     "PhoneNumber": "0613789260",
