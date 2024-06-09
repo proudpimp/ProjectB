@@ -81,15 +81,71 @@ namespace ProjectBTest
         [TestMethod]
         public void MakeAccount_False()
         {
-            string name = "";
+            string name = "John Doe";
+            string email = "jdoe@gmail.com";
+            string password = "John";
+            DateTime birthday = DateTime.Now.AddYears(-5);
+            string postcode = "1212ZB";
+            string phoneNumber = "1612345678";
+            int verificationNum = new Random().Next(1000,10000);
+            var result = Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void LoginAccount_True()
+        {
+            string name = "John Doe";
             string email = "jdoe@gmail.com";
             string password = "JohnDoe1";
             DateTime birthday = DateTime.Now.AddYears(-5);
             string postcode = "1212ZB";
             string phoneNumber = "1612345678";
             int verificationNum = new Random().Next(1000,10000);
-
-            var result = Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            var result = Account.AccountExists(email,password);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void LoginAccount_False()
+        {
+            string name = "John Doe";
+            string email = "jdoe@gmail.com";
+            string fakeEmail = "testjoe@gmail.com";
+            string password = "JohnDoe1";
+            DateTime birthday = DateTime.Now.AddYears(-5);
+            string postcode = "1212ZB";
+            string phoneNumber = "1612345678";
+            int verificationNum = new Random().Next(1000,10000);
+            Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            var result = Account.AccountExists(fakeEmail,password);
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void DeleteAccount_True()
+        {
+            string name = "John Doe";
+            string email = "jdoe@gmail.com";
+            string password = "John";
+            DateTime birthday = DateTime.Now.AddYears(-5);
+            string postcode = "1212ZB";
+            string phoneNumber = "1612345678";
+            int verificationNum = new Random().Next(1000,10000);
+            Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            var result = Account.AccountExists(email,password,verificationNum);
+            Assert.IsTrue(result);
+        }
+        public void DeleteAccount_False()
+        {
+            string name = "John Doe";
+            string email = "jdoe@gmail.com";
+            string fakeEmail = "testjoe@gmail.com";
+            string password = "JohnDoe1";
+            DateTime birthday = DateTime.Now.AddYears(-5);
+            string postcode = "1212ZB";
+            string phoneNumber = "1612345678";
+            int verificationNum = new Random().Next(1000,10000);
+            Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
+            var result = Account.AccountExists(fakeEmail,password,verificationNum);
             Assert.IsFalse(result);
         }
     }
