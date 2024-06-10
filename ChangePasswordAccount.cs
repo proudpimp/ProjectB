@@ -16,5 +16,7 @@ public static class ChangePasswordAccount
         loggedInAccount.ChangePassword(newPassword);
         Account.SaveAccountInformationToJson();
         Console.WriteLine("Password changed successfully.");
+        
     }
+    
 }

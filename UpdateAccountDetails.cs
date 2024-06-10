@@ -18,13 +18,15 @@ public static class UpdateAccountDetails
                     ChangePasswordAccount.ChangePassw(loggedInAccount);
                     return;
                 case "2":
-                    
-                    break;
+                    ChangePostcode.ChangePost(loggedInAccount);
+                    return;
                 case "3":
-                    break;
+                    ChangePhoneNumber.Changephonenum(loggedInAccount);
+                    return;
                 default:
                     System.Console.WriteLine("Invalid choice");
                     break;
+                    
             }
         }
     }

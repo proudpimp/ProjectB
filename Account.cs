@@ -59,9 +59,9 @@ public class Account
     {
         PhoneNumber = phoneNumber;
     }
-    public void ChangePostcode(string phoneNumber)
+    public void ChangePostcode(string postcode)
     {
-        PhoneNumber = phoneNumber;
+        Postcode = postcode;
     }
     public static void SaveAccountInformationToJson()
     {
