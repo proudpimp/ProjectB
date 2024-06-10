@@ -93,7 +93,7 @@ public class Account
             System.Console.WriteLine("Postcode has to have length of 4 numbers and 2 letters.");
             return false;
         }
-        if(phoneNumber.Length != 10 || phoneNumber.StartsWith("06"))
+        if(phoneNumber.Length != 10 || !phoneNumber.StartsWith("06"))
         {
             System.Console.WriteLine("Phone number must have exactly 10 digits and start with '06'");
             return false;
