@@ -16,7 +16,6 @@ namespace ProjectBTest
             string tcode = "4A";
             int safetynum = new Random().Next(1000,10000);
             bool result = Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note,safetynum);
-
             Assert.IsTrue(result);
         }
 
@@ -29,8 +28,6 @@ namespace ProjectBTest
             string note = "Gluten Free";
             string tcode = "2B";
             int safetynum = new Random().Next(1000,10000);
-
-            
             bool result = Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note,safetynum);
 
             Assert.IsFalse(result);
@@ -45,7 +42,6 @@ namespace ProjectBTest
             string tcode = "4B";
             int safetynum = new Random().Next(1000,10000);
             Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note,safetynum);
-
             bool result = Reserveringen.AnnuleerReservering(guestName,safetynum);
             Assert.IsTrue(result);
         }
@@ -60,7 +56,6 @@ namespace ProjectBTest
             int safetynum = new Random().Next(1000,10000);
             Reserveringen.VoegReserveringToe(guestName, numberOfPeople, reservationDateTime,tcode, note,safetynum);
             string fakeNaam = "Rotterdam";
-
             bool result = Reserveringen.AnnuleerReservering(fakeNaam,safetynum);
             Assert.IsFalse(result);
         }
@@ -74,7 +69,6 @@ namespace ProjectBTest
             string postcode = "1212ZB";
             string phoneNumber = "0612345678";
             int verificationNum = new Random().Next(1000,10000);
-
             bool result = Account.VoegAccountToe(name,email,password,birthday,postcode,phoneNumber,verificationNum);
             Assert.IsTrue(result);
         }
