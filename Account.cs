@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 public class Account
 {
@@ -71,6 +72,32 @@ public class Account
     }
     public static bool VoegAccountToe(string name, string emailadres, string password, DateTime dateOfBirth, string postcode, string phoneNumber,int verificationNumber)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            System.Console.WriteLine("Name cannot be empty.");
+            return false;
+        }
+        string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        if (!Regex.IsMatch(emailadres,emailPattern))
+        {
+            System.Console.WriteLine("Email needs to be a valid email adress.");
+            return false;
+        }
+        if(password.Length < 8)
+        {
+            System.Console.WriteLine("Password cannot be less than 8 characters.");
+            return false;
+        }
+        if(postcode.Length != 6)
+        {
+            System.Console.WriteLine("Postcode has to have length of 4 numbers and 2 letters.");
+            return false;
+        }
+        if(phoneNumber.Length != 10 || phoneNumber.StartsWith("06"))
+        {
+            System.Console.WriteLine("Phone number must have exactly 10 digits and start with '06'");
+            return false;
+        }
         var nieuweAccount = new Account(name, emailadres, password, dateOfBirth, postcode, phoneNumber,verificationNumber);
         Accounts.Add(nieuweAccount);
         System.Console.WriteLine($"Account succesfully created for {name}");
