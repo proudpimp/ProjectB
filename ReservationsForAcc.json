@@ -19,8 +19,16 @@
     "Email": "ethanmeulens533@gmail.com",
     "GastNaam": "Ethan",
     "AantalPersonen": 4,
-    "DatumTijd": "2024-06-28T18:00:00",
+    "DatumTijd": "2024-06-28T19:00:00",
     "TableCode": "4A",
     "Notitie": "Celebration"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-11-07T19:00:00",
+    "TableCode": "4E",
+    "Notitie": "gluten free"
   }
 ]
