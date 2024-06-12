@@ -29,10 +29,10 @@ public static class Login
                 CurrentUserEmail = emailadress;
                 CurrentUserName = Account.GetUserName(emailadress);
                 System.Console.WriteLine("You have succesfully logged in.");
-                 // Retrieve the logged-in account
+          
                 Account loggedInAccount = Account.GetAccount(emailadress);
 
-                // Pass the logged-in account to the MenuAfter.Log() method
+             
                 MenuAfter.Log(loggedInAccount);
                 return true;
             }
