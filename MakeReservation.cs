@@ -1,6 +1,5 @@
 public static class MakeReservation
 {
-
     static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "4E", "6A", "6B" };
     static readonly Random random = new Random();
     public static void Make()

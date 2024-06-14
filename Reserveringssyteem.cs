@@ -11,7 +11,7 @@ public static class Reserveringen
     {
         get
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -23,11 +23,12 @@ public static class Reserveringen
             }
         }
     }
-        private static string JsonFilePathForAcc
+
+    private static string JsonFilePathForAcc
     {
         get
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 return Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -39,137 +40,135 @@ public static class Reserveringen
             }
         }
     }
+
     public const int Max6Tafels = 2;
     public const int Max2Tafels = 8;
     public const int Max4Tafels = 5;
 
     static Reserveringen()
     {
-        LoadReservationsFromJson();
-        LoadReservationsFromJsonForAcc();
+        reserveringen = LoadFromJson<List<TafelReservering>>(JsonFilePath) ?? new List<TafelReservering>();
+        reserveringenForAcc = LoadFromJson<List<TafelReserveringForEmail>>(JsonFilePathForAcc) ?? new List<TafelReserveringForEmail>();
     }
 
-public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
-{
-    bool noReservations = true;
-
-    foreach (var reservation in reserveringen)
+    public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
     {
-        if (reservation.TableCode == tableCode && reservation.DatumTijd.Date == datumTijd.Date)
+        bool noReservations = true;
+
+        foreach (var reservation in reserveringen)
         {
-            noReservations = false;
-            break;
+            if (reservation.TableCode == tableCode && reservation.DatumTijd.Date == datumTijd.Date)
+            {
+                noReservations = false;
+                break;
+            }
         }
+
+        return noReservations;
     }
 
-    return noReservations;
-
-}
-
-public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie,int safetyNumber)
-{
-
-    if (datumTijd < DateTime.Now)
+    public static bool VoegReserveringToe(string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie, int safetyNumber)
     {
-        Console.WriteLine("You cannot make a reservation for a past date and time.");
-        return false;
+        if (datumTijd < DateTime.Now)
+        {
+            Console.WriteLine("You cannot make a reservation for a past date and time.");
+            return false;
+        }
+
+        int reservationHour = datumTijd.Hour;
+
+        if (reservationHour < 12 || reservationHour > 21)
+        {
+            Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
+            return false;
+        }
+
+        int tafelType = BepaalTafelType(aantalPersonen);
+        if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
+        {
+            Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
+            return false;
+        }
+
+        var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie, safetyNumber);
+        reserveringen.Add(nieuweReservering);
+        Console.WriteLine("Reservation successfully added for " + gastNaam);
+
+        string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
+                                $"Reservation for {gastNaam}\n" +
+                                $"Amount of people: {aantalPersonen}\n" +
+                                $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
+                                $"TableCode: {tableCode}\n" +
+                                $"SafetyNumber: {safetyNumber}\n" +
+                                $"Note: {notitie}";
+
+        try
+        {
+            File.WriteAllText(fullPath, bevestigingTekst);
+            Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
+        }
+        SaveToJson(JsonFilePath, reserveringen);
+        return true;
     }
 
-    int reservationHour = datumTijd.Hour;
-
-    if (reservationHour < 12 || reservationHour > 21)
+    public static bool VoegReserveringToeEmail(string email, string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
     {
-        Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
-        return false;
+        if (datumTijd < DateTime.Now)
+        {
+            Console.WriteLine("You cannot make a reservation for a past date and time.");
+            return false;
+        }
+
+        int reservationHour = datumTijd.Hour;
+
+        if (reservationHour < 12 || reservationHour > 21)
+        {
+            Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
+            return false;
+        }
+
+        int tafelType = BepaalTafelType(aantalPersonen);
+        if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
+        {
+            Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
+            return false;
+        }
+
+        var nieuweReservering = new TafelReserveringForEmail(email, gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
+        reserveringenForAcc.Add(nieuweReservering);
+        Console.WriteLine("Reservation successfully added for " + gastNaam);
+
+        string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
+        string fullPath = Path.Combine(folderPath, fileName);
+
+        string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
+                                $"Reservation for {gastNaam}\n" +
+                                $"Amount of people: {aantalPersonen}\n" +
+                                $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
+                                $"TableCode: {tableCode}\n" +
+                                $"Note: {notitie}";
+
+        try
+        {
+            File.WriteAllText(fullPath, bevestigingTekst);
+            Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
+        }
+        SaveToJson(JsonFilePathForAcc, reserveringenForAcc);
+        return true;
     }
-    
-    int tafelType = BepaalTafelType(aantalPersonen);
-    if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
-    {
-        Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
-        return false;
-    }
-    
-    var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie,safetyNumber);
-    reserveringen.Add(nieuweReservering);
-    Console.WriteLine("Reservation successfully added for " + gastNaam);
-
-    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
-    string fullPath = Path.Combine(folderPath, fileName);
-
-    string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
-                            $"Reservation for {gastNaam}\n" +
-                            $"Amount of people: {aantalPersonen}\n" +
-                            $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
-                            $"TableCode: {tableCode}\n" +
-                            $"SafetyNumber: {safetyNumber}\n" +
-                            $"Note: {notitie}";
-
-
-    try
-    {
-        File.WriteAllText(fullPath, bevestigingTekst);
-        Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
-    }
-    SaveReservationsToJson();
-    return true;
-}
-public static bool VoegReserveringToeEmail(string email,string gastNaam, int aantalPersonen, DateTime datumTijd, string tableCode, string notitie)
-{
-    if (datumTijd < DateTime.Now)
-    {
-        Console.WriteLine("You cannot make a reservation for a past date and time.");
-        return false;
-    }
-
-    int reservationHour = datumTijd.Hour;
-
-    if (reservationHour < 12 || reservationHour > 21)
-    {
-        Console.WriteLine("Reservations can only be made between 12:00 and 21:00.");
-        return false;
-    }
-    
-    int tafelType = BepaalTafelType(aantalPersonen);
-    if (tafelType == 0 || !ControleerBeschikbaarheid(datumTijd, tafelType))
-    {
-        Console.WriteLine("Unfortunately, there is no availability on the selected date and time for the number of people.");
-        return false;
-    }
-    
-    var nieuweReservering = new TafelReserveringForEmail(email,gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
-    reserveringenForAcc.Add(nieuweReservering);
-    Console.WriteLine("Reservation successfully added for " + gastNaam);
-
-    string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    string fileName = $"Reservation_{gastNaam}_Confirmation.txt";
-    string fullPath = Path.Combine(folderPath, fileName);
-
-    string bevestigingTekst = "Thank you for your reservation at Jake's Restaurant. We look forward to welcoming you! \nBelow are the details of your reservation:\n\n" +
-                            $"Reservation for {gastNaam}\n" +
-                            $"Amount of people: {aantalPersonen}\n" +
-                            $"Date and time: {datumTijd.ToString("yyyy-MM-dd HH:mm")}\n" +
-                            $"TableCode: {tableCode}\n" +
-                            $"Note: {notitie}";
-
-
-    try
-    {
-        File.WriteAllText(fullPath, bevestigingTekst);
-        Console.WriteLine("The reservation confirmation has been successfully saved for " + gastNaam + " in " + fullPath + ".");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
-    }
-    SaveReservationsToJsonForAcc();
-    return true;
-}
 
     public static int BepaalTafelType(int aantalPersonen)
     {
@@ -192,6 +191,7 @@ public static bool VoegReserveringToeEmail(string email,string gastNaam, int aan
 
         return reserveringen.Count(r => r.DatumTijd.Date == datumTijd.Date && r.TafelType == tafelType) < maxTafels;
     }
+
     public static bool IsMagicNumberEqual(int safetyNumber)
     {
         foreach (var number in reserveringen)
@@ -200,18 +200,17 @@ public static bool VoegReserveringToeEmail(string email,string gastNaam, int aan
             {
                 return true;
             }
-
         }
         return false;
     }
 
-    public static bool AnnuleerReservering(string gastNaam,int SafetyNumber)
+    public static bool AnnuleerReservering(string gastNaam, int SafetyNumber)
     {
-        var reservering = GetReservationByName(gastNaam,SafetyNumber);
+        var reservering = GetReservationByName(gastNaam, SafetyNumber);
         if (reservering != null)
         {
             reserveringen.Remove(reservering);
-            SaveReservationsToJson();
+            SaveToJson(JsonFilePath, reserveringen);
             Console.WriteLine("The reservation has been successfully canceled.");
             return true;
         }
@@ -222,74 +221,51 @@ public static bool VoegReserveringToeEmail(string email,string gastNaam, int aan
         }
     }
 
-
-public static bool AnnuleerReserveringforAcc(string email)
-    {   
+    public static bool AnnuleerReserveringforAcc(string email)
+    {
         var reservering = GetReservationByEmail(email);
         if (reservering != null)
         {
             AccountReservations.View();
-            
+
             Console.WriteLine("Enter the date and time of the reservation you would like to cancel");
-        
+
             DateTime datetocancel;
-            
+
             while (!DateTime.TryParse(Console.ReadLine(), out datetocancel))
             {
                 Console.WriteLine("The date you entered is not valid date\nTry again.");
-                
             }
-            foreach(var x in reserveringenForAcc)
+            foreach (var x in reserveringenForAcc)
             {
-                if(x.DatumTijd == datetocancel)
+                if (x.DatumTijd == datetocancel)
                 {
                     reserveringenForAcc.Remove(x);
-                    SaveReservationsToJsonForAcc();
+                    SaveToJson(JsonFilePathForAcc, reserveringenForAcc);
                     Console.WriteLine("Your reservation has been cancelled.");
                     return true;
                 }
-                
             }
         }
         else
         {
             Console.WriteLine("Your reservation has not been found");
             return false;
-            
         }
         return false;
-        
-
     }
 
-    
-    public static void SaveReservationsToJson()
-    {
-        string json = JsonConvert.SerializeObject(reserveringen, Formatting.Indented);
-        File.WriteAllText(JsonFilePath, json);
-    }
+    public static T LoadFromJson<T>(string filePath)
+{
+    string json = File.ReadAllText(filePath);
+    return JsonConvert.DeserializeObject<T>(json);
+}
 
-    private static void LoadReservationsFromJson()
-    {
-        if (File.Exists(JsonFilePath))
-        {
-            string json = File.ReadAllText(JsonFilePath);
-            reserveringen = JsonConvert.DeserializeObject<List<TafelReservering>>(json) ?? new List<TafelReservering>();
-        }
-    }
-        public static void SaveReservationsToJsonForAcc()
-    {
-        string json = JsonConvert.SerializeObject(reserveringenForAcc, Formatting.Indented);
-        File.WriteAllText(JsonFilePathForAcc, json);
-    }
 
-    private static void LoadReservationsFromJsonForAcc()
+    public static void SaveToJson<T>(string filePath, T data)
     {
-    if (File.Exists(JsonFilePathForAcc))
-    {
-        string jsonAcc = File.ReadAllText(JsonFilePathForAcc);
-        reserveringenForAcc = JsonConvert.DeserializeObject<List<TafelReserveringForEmail>>(jsonAcc) ?? new List<TafelReserveringForEmail>();
-    }
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+        File.WriteAllText(filePath, json);
     }
 
     public static TafelReservering? GetReservationByName(string gastNaam, int safetyNumber)
@@ -303,47 +279,51 @@ public static bool AnnuleerReserveringforAcc(string email)
         }
         return null;
     }
- public static List<TafelReserveringForEmail> GetReservationByEmail(string email)
+
+    public static List<TafelReserveringForEmail> GetReservationByEmail(string email)
     {
         return reserveringenForAcc.FindAll(reservering => reservering.Email == email);
     }
-
-
-
-
-public static void GetAvailableTablesForDay(DateTime date)
-{
-    int availableTablesForTwo = Max2Tafels;
-    int availableTablesForFour = Max4Tafels;
-    int availableTablesForSix = Max6Tafels;
-
-    foreach (var reservation in reserveringen)
+    public static void SaveReservations()
     {
-        if (reservation.DatumTijd.Date == date.Date)
-        {
-            if (reservation.TafelType == 2)
-            {
-                availableTablesForTwo--;
-            }
-            else if (reservation.TafelType == 4)
-            {
-                availableTablesForFour--;
-            }
-            else if (reservation.TafelType == 6)
-            {
-                availableTablesForSix--;
-            }
-        }
+        SaveToJson(JsonFilePath, reserveringen);
+    }
+        public static void SaveReservationsToAccount()
+    {
+        SaveToJson(JsonFilePathForAcc, reserveringenForAcc);
     }
 
-    int totalAvailableTables = availableTablesForTwo + availableTablesForFour + availableTablesForSix;
+    public static void GetAvailableTablesForDay(DateTime date)
+    {
+        int availableTablesForTwo = Max2Tafels;
+        int availableTablesForFour = Max4Tafels;
+        int availableTablesForSix = Max6Tafels;
 
-    Console.WriteLine($"Available tables for {date.ToString("yyyy-MM-dd")}:\n" +
-                      $"- Two-person tables: {availableTablesForTwo}\n" +
-                      $"- Four-person tables: {availableTablesForFour}\n" +
-                      $"- Six-person tables: {availableTablesForSix}\n" +
-                      $"Total available tables: {totalAvailableTables}");
+        foreach (var reservation in reserveringen)
+        {
+            if (reservation.DatumTijd.Date == date.Date)
+            {
+                if (reservation.TafelType == 2)
+                {
+                    availableTablesForTwo--;
+                }
+                else if (reservation.TafelType == 4)
+                {
+                    availableTablesForFour--;
+                }
+                else if (reservation.TafelType == 6)
+                {
+                    availableTablesForSix--;
+                }
+            }
+        }
 
-}
+        int totalAvailableTables = availableTablesForTwo + availableTablesForFour + availableTablesForSix;
 
+        Console.WriteLine($"Available tables for {date.ToString("yyyy-MM-dd")}:\n" +
+                          $"- Two-person tables: {availableTablesForTwo}\n" +
+                          $"- Four-person tables: {availableTablesForFour}\n" +
+                          $"- Six-person tables: {availableTablesForSix}\n" +
+                          $"Total available tables: {totalAvailableTables}");
+    }
 }

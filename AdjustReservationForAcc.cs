@@ -46,7 +46,7 @@ public class AdjustReservationforAcc : IAdjust
             }
 
             reserveringToAdjust.DatumTijd = newDatumTijd;
-            Reserveringen.SaveReservationsToJsonForAcc();
+            Reserveringen.SaveReservationsToAccount();
         
 
             Console.WriteLine("Reservation updated successfully.");

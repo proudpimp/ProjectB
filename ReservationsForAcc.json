@@ -27,8 +27,24 @@
     "Email": "ethanmeulens533@gmail.com",
     "GastNaam": "Ethan",
     "AantalPersonen": 4,
-    "DatumTijd": "2024-11-07T19:00:00",
+    "DatumTijd": "2024-12-07T20:00:00",
     "TableCode": "4E",
     "Notitie": "gluten free"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-07-14T15:00:00",
+    "TableCode": "4D",
+    "Notitie": "yusu"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-08-10T19:00:00",
+    "TableCode": "6A",
+    "Notitie": "Asylum Free"
   }
 ]

@@ -7,13 +7,13 @@ public class AdjustReservation : IAdjust
         string zoekNaam = Console.ReadLine();
         System.Console.WriteLine("Enter the magic code");
         int safetyNum;
-        while(!int.TryParse(Console.ReadLine(),out safetyNum) || Reserveringen.IsMagicNumberEqual(safetyNum) == false)
+        while (!int.TryParse(Console.ReadLine(), out safetyNum) || !Reserveringen.IsMagicNumberEqual(safetyNum))
         {
             System.Console.WriteLine("Invalid input. Please enter a valid 4 digit number. ");
         }
-        
-        var reservation = Reserveringen.GetReservationByName(zoekNaam,safetyNum);
-        if(reservation != null)
+
+        var reservation = Reserveringen.GetReservationByName(zoekNaam, safetyNum);
+        if (reservation != null)
         {
             System.Console.WriteLine("Your current reservation details:");
             System.Console.WriteLine("-------------------------------------");
@@ -26,12 +26,12 @@ public class AdjustReservation : IAdjust
 
             System.Console.Write("Fill in the new date and time of the reservation (yyyy-mm-dd hh:mm): ");
             DateTime nieuweaDatumTijd;
-            while(!DateTime.TryParse(Console.ReadLine(), out nieuweaDatumTijd) || nieuweaDatumTijd < DateTime.Now)
+            while (!DateTime.TryParse(Console.ReadLine(), out nieuweaDatumTijd) || nieuweaDatumTijd < DateTime.Now ) 
             {
                 System.Console.WriteLine("Invalid date. Please enter a future date and time in the format yyyy-mm-dd hh:mm:");
             }
             reservation.DatumTijd = nieuweaDatumTijd;
-            Reserveringen.SaveReservationsToJson();
+            Reserveringen.SaveReservations();
             Console.WriteLine("The reservation has been adjusted.");
         }
         else

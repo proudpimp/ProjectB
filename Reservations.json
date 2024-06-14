@@ -14,5 +14,13 @@
     "DatumTijd": "2024-12-05T16:00:00",
     "TableCode": "6B",
     "Notitie": ""
+  },
+  {
+    "SafetyNumber": 5105,
+    "GastNaam": "Mr Meulenss",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-07-14T23:00:00",
+    "TableCode": "4B",
+    "Notitie": "Onvoldoende free"
   }
 ]
