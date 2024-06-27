@@ -21,7 +21,7 @@ public static class UpdateAccountDetails
                     ChangePostcode.ChangePost(loggedInAccount);
                     return;
                 case "3":
-                    ChangePhoneNumber.Changephonenum(loggedInAccount);
+                    Account.Changephonenum(loggedInAccount);
                     return;
                 default:
                     System.Console.WriteLine("Invalid choice");
