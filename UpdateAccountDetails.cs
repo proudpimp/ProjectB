@@ -18,7 +18,7 @@ public static class UpdateAccountDetails
                     Account.ChangePassw(loggedInAccount);
                     return;
                 case "2":
-                    ChangePostcode.ChangePost(loggedInAccount);
+                    Account.ChangePost(loggedInAccount);
                     return;
                 case "3":
                     Account.Changephonenum(loggedInAccount);
