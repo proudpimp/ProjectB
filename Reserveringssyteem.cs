@@ -226,7 +226,7 @@ public static class Reserveringen
         var reservering = GetReservationByEmail(email);
         if (reservering != null)
         {
-            AccountReservations.View();
+            Account.View();
 
             Console.WriteLine("Enter the date and time of the reservation you would like to cancel");
 
