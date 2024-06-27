@@ -15,7 +15,7 @@ public static class UpdateAccountDetails
             switch (choice)
             {
                 case "1":
-                    ChangePasswordAccount.ChangePassw(loggedInAccount);
+                    Account.ChangePassw(loggedInAccount);
                     return;
                 case "2":
                     ChangePostcode.ChangePost(loggedInAccount);
