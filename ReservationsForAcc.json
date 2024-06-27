@@ -30,5 +30,21 @@
     "DatumTijd": "2024-08-10T19:00:00",
     "TableCode": "6A",
     "Notitie": "Asylum Free"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-06-28T17:00:00",
+    "TableCode": "6B",
+    "Notitie": "Riba Voer"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-07-20T18:00:00",
+    "TableCode": "2H",
+    "Notitie": "Unbe tawero"
   }
 ]

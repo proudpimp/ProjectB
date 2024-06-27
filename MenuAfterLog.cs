@@ -24,7 +24,7 @@ public static class MenuAfter
                     Account.View();
                     break;
                 case "2":
-                    MakeReservationFor.Account();
+                    Account.MakeReservationForAcc();
                     break;
                 case "3":
                     Account.Cancel();
