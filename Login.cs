@@ -33,7 +33,7 @@ public static class Login
                 Account loggedInAccount = Account.GetAccount(emailadress);
 
              
-                MenuAfter.Log(loggedInAccount);
+                AfterLogin.DisplayAfterLogIn(loggedInAccount);
                 return true;
             }
             else

@@ -1,8 +1,8 @@
-public static class MenuAfter
+public static class AfterLogin
 {
     private static Account loggedInAccount;
 
-    public static void Log(Account account)
+    public static void DisplayAfterLogIn(Account account)
     {
         loggedInAccount = account;
 
