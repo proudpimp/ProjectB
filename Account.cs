@@ -41,6 +41,8 @@ public class Account
     public static string CurrentUserEmail{get;set;}
     public static string CurrentUserName{get;set;}
 
+    private static Account loggedInAccount;
+
 
     static Account()
     {
@@ -566,6 +568,35 @@ public class Account
             }
         }
 
+    }
+
+    public static void UpdateAccount(Account account)
+    {
+        loggedInAccount = account;
+
+        while(true)
+        {
+            System.Console.WriteLine("1) Change Password");
+            System.Console.WriteLine("2) Change Postcode");
+            System.Console.WriteLine("3) Change Phone Number");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    Account.ChangePassw(loggedInAccount);
+                    return;
+                case "2":
+                    Account.ChangePost(loggedInAccount);
+                    return;
+                case "3":
+                    Account.Changephonenum(loggedInAccount);
+                    return;
+                default:
+                    System.Console.WriteLine("Invalid choice");
+                    break;
+                    
+            }
+        }
     }
 
 }

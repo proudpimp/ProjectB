@@ -33,7 +33,7 @@ public static class AfterLogin
                     new AdjustReservationforAcc().Adjust();
                     break;
                 case "5":
-                    UpdateAccountDetails.UpdateAccount(loggedInAccount);
+                   Account.UpdateAccount(loggedInAccount);
                     break;
                 case "6":
                     Menu.MenuChoice();
