@@ -57,7 +57,7 @@
                         }
                         break;
                 case "3":
-                    DeleteAccount.ThisAccount();
+                    Account.DeleteAccount();
                     break;
                 case "4":
                     Account.MakeNewAccount();
