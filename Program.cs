@@ -60,7 +60,7 @@
                     DeleteAccount.ThisAccount();
                     break;
                 case "4":
-                    MakeAccount.NewAccount();
+                    Account.MakeNewAccount();
                     break;
                 case "5":
                     System.Console.WriteLine("Quit");

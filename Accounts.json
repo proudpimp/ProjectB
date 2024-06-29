@@ -16,5 +16,23 @@
     "Postcode": "3032CG",
     "PhoneNumber": "0613789260",
     "verificationNumber": 3230
+  },
+  {
+    "Name": "southsidejoe",
+    "Emailadress": "southsidejoe@live.nl",
+    "Password": "getbreadeveryday",
+    "DateOfBirth": "2000-06-29T00:00:00",
+    "Postcode": "8080BB",
+    "PhoneNumber": "0612345678",
+    "verificationNumber": 6955
+  },
+  {
+    "Name": "louisvuitton",
+    "Emailadress": "louisvuitton@gmail.com",
+    "Password": "louilouiloui",
+    "DateOfBirth": "2001-06-30T00:00:00",
+    "Postcode": "4040NN",
+    "PhoneNumber": "0612345678",
+    "verificationNumber": 1100
   }
 ]
