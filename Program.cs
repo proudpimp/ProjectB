@@ -17,7 +17,7 @@
             switch (choice)
             {
                 case "1":
-                        Login.ToAccount();
+                        Account.Login();
                         break;
                 case "2":
                         Console.WriteLine("1) Make a reservation");

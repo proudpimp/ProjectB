@@ -2,7 +2,7 @@ public class AdjustReservationforAcc : IAdjust
 {
     public void Adjust()
     {
-         string email = Login.CurrentUserEmail;
+         string email = Account.CurrentUserEmail;
         var reserveringen = Reserveringen.GetReservationByEmail(email);
         if (reserveringen != null)
         {

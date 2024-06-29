@@ -38,6 +38,9 @@ public class Account
 
     static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "4E", "6A", "6B" };
 
+    public static string CurrentUserEmail{get;set;}
+    public static string CurrentUserName{get;set;}
+
 
     static Account()
     {
@@ -179,7 +182,7 @@ public class Account
     
     public static void View()
     {
-        string email = Login.CurrentUserEmail;
+        string email = CurrentUserEmail;
         var reserveringen = Reserveringen.GetReservationByEmail(email);
         if (reserveringen != null)
         {
@@ -201,7 +204,7 @@ public class Account
 
     public static void Cancel()
     {
-        string email = Login.CurrentUserEmail;
+        string email = CurrentUserEmail;
         
         Reserveringen.AnnuleerReserveringforAcc(email);
         
@@ -266,7 +269,7 @@ public class Account
 
     public static void MakeReservationForAcc()
     {
-        string email = Login.CurrentUserEmail;
+        string email = CurrentUserEmail;
         DateTime datumTijd;
         Console.Write("Enter the date and time of your reservation (yyyy-mm-dd hh:mm): ");
         while (!DateTime.TryParse(Console.ReadLine(), out datumTijd) || datumTijd < DateTime.Now || datumTijd.Hour < 12 || datumTijd.Hour >= 22)
@@ -277,7 +280,7 @@ public class Account
 
         Console.WriteLine("\nChecking availability for: " + datumTijd.ToString("yyyy-MM-dd HH:mm"));
         Reserveringen.GetAvailableTablesForDay(datumTijd);
-        string naam = Login.CurrentUserName;
+        string naam = CurrentUserName;
 
 
         Console.Write("How many people: ");
@@ -523,6 +526,46 @@ public class Account
         } while (phoneNumber.Length != 10 || !phoneNumber.StartsWith("06"));
 
         Account.VoegAccountToe(name,eadres,password,birthday,postcode,phoneNumber,verificationNum);
+    }
+
+    public static bool Login()
+    {
+        while(true)
+        {
+            System.Console.WriteLine("Enter your emailadress: ");
+            string emailadress  = Console.ReadLine();
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            while(string.IsNullOrWhiteSpace(emailadress) || !Regex.IsMatch(emailadress, emailPattern))
+            {
+                Console.WriteLine("Please enter a valid email address.");
+                emailadress = Console.ReadLine();
+            }
+            System.Console.WriteLine("Enter your password: ");
+            string password = Console.ReadLine();
+            while(password.Length <8)
+            {
+                Console.WriteLine("Password cannot be less than 8 characters.");
+                password = Console.ReadLine();
+            }
+
+            if(Account.AccountExists(emailadress,password))
+            {
+                CurrentUserEmail = emailadress;
+                CurrentUserName = Account.GetUserName(emailadress);
+                System.Console.WriteLine("You have succesfully logged in.");
+          
+                Account loggedInAccount = Account.GetAccount(emailadress);
+
+             
+                AfterLogin.DisplayAfterLogIn(loggedInAccount);
+                return true;
+            }
+            else
+            {
+                System.Console.WriteLine("The credentials are not correct. Try again.");
+            }
+        }
+
     }
 
 }
