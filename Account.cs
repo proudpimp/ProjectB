@@ -36,19 +36,23 @@ public class Account : IAdjust
     public string PhoneNumber {get;set;}
     public int verificationNumber{get;set;}
 
+    public int Points {get;set;}
+
     static readonly string[] validTableCodes = new string[] { "2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H", "4A", "4B", "4C", "4D", "4E", "6A", "6B" };
 
     public static string CurrentUserEmail{get;set;}
     public static string CurrentUserName{get;set;}
 
     public static Account loggedInAccount;
+    
+    
 
 
     static Account()
     {
         LoadAccountsFromJson();
     }
-    public Account(string name, string emailadress, string password, DateTime dateOfBirth, string postcode, string phoneNumber,int verificationNumber)
+    public Account(string name, string emailadress, string password, DateTime dateOfBirth, string postcode, string phoneNumber,int verificationNumber,int points = 0)
     {
         Name = name;
         Emailadress = emailadress;
@@ -57,6 +61,7 @@ public class Account : IAdjust
         Postcode = postcode;
         PhoneNumber = phoneNumber;
         this.verificationNumber = verificationNumber;
+        Points = points;
     }
 
 
