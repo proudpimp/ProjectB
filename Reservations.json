@@ -22,5 +22,13 @@
     "DatumTijd": "2024-07-14T23:00:00",
     "TableCode": "4B",
     "Notitie": "Onvoldoende free"
+  },
+  {
+    "SafetyNumber": 2995,
+    "GastNaam": "Mongoose",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-07-15T18:00:00",
+    "TableCode": "4A",
+    "Notitie": "Himalaya Water"
   }
 ]
