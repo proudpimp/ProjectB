@@ -1,11 +1,21 @@
 using Newtonsoft.Json;
-public class TafelReservering : TafelReserveringBase
+public abstract class TafelReservering
 {
-    public int SafetyNumber { get; set; }
+    public string GastNaam { get; set; }
+    public int AantalPersonen { get; set; }
+    public DateTime DatumTijd { get; set; }
+    [JsonIgnore]
+    public int TafelType { get; set; }
+    public string TableCode { get; set; }
+    public string Notitie { get; set; }
 
-    public TafelReservering(string gastNaam, int aantalPersonen, DateTime datumTijd, int tafelType, string tableCode, string notitie, int safetyNumber)
-        : base(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie)
+    protected TafelReservering(string gastNaam, int aantalPersonen, DateTime datumTijd, int tafelType, string tableCode, string notitie)
     {
-        SafetyNumber = safetyNumber;
+        GastNaam = gastNaam;
+        AantalPersonen = aantalPersonen;
+        DatumTijd = datumTijd;
+        TafelType = tafelType;
+        TableCode = tableCode;
+        Notitie = notitie;
     }
 }

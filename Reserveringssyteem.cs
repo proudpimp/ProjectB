@@ -4,8 +4,8 @@ using Newtonsoft.Json;
 
 public static class Reserveringen
 {
-    private static List<TafelReservering> reserveringen = new List<TafelReservering>();
-    private static List<TafelReserveringForEmail> reserveringenForAcc = new List<TafelReserveringForEmail>();
+    private static List<TafelReserveringForGuest> reserveringen = new List<TafelReserveringForGuest>();
+    private static List<TafelReserveringForAcc> reserveringenForAcc = new List<TafelReserveringForAcc>();
 
     private static string JsonFilePath
     {
@@ -47,8 +47,8 @@ public static class Reserveringen
 
     static Reserveringen()
     {
-        reserveringen = LoadFromJson<List<TafelReservering>>(JsonFilePath) ?? new List<TafelReservering>();
-        reserveringenForAcc = LoadFromJson<List<TafelReserveringForEmail>>(JsonFilePathForAcc) ?? new List<TafelReserveringForEmail>();
+        reserveringen = LoadFromJson<List<TafelReserveringForGuest>>(JsonFilePath) ?? new List<TafelReserveringForGuest>();
+        reserveringenForAcc = LoadFromJson<List<TafelReserveringForAcc>>(JsonFilePathForAcc) ?? new List<TafelReserveringForAcc>();
     }
 
     public static bool IsTableAvailable(string tableCode, DateTime datumTijd)
@@ -90,7 +90,7 @@ public static class Reserveringen
             return false;
         }
 
-        var nieuweReservering = new TafelReservering(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie, safetyNumber);
+        var nieuweReservering = new TafelReserveringForGuest(gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie, safetyNumber);
         reserveringen.Add(nieuweReservering);
         Console.WriteLine("Reservation successfully added for " + gastNaam);
 
@@ -142,7 +142,7 @@ public static class Reserveringen
             return false;
         }
 
-        var nieuweReservering = new TafelReserveringForEmail(email, gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
+        var nieuweReservering = new TafelReserveringForAcc(email, gastNaam, aantalPersonen, datumTijd, tafelType, tableCode, notitie);
         reserveringenForAcc.Add(nieuweReservering);
         Console.WriteLine("Reservation successfully added for " + gastNaam);
 
@@ -268,7 +268,7 @@ public static class Reserveringen
         File.WriteAllText(filePath, json);
     }
 
-    public static TafelReservering? GetReservationByName(string gastNaam, int safetyNumber)
+    public static TafelReserveringForGuest? GetReservationByName(string gastNaam, int safetyNumber)
     {
         foreach (var reservering in reserveringen)
         {
@@ -280,7 +280,7 @@ public static class Reserveringen
         return null;
     }
 
-    public static List<TafelReserveringForEmail> GetReservationByEmail(string email)
+    public static List<TafelReserveringForAcc> GetReservationByEmail(string email)
     {
         return reserveringenForAcc.FindAll(reservering => reservering.Email == email);
     }

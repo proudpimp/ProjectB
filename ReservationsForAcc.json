@@ -51,8 +51,16 @@
     "Email": "ethanmeulens533@gmail.com",
     "GastNaam": "Ethan",
     "AantalPersonen": 6,
-    "DatumTijd": "2024-10-08T18:00:00",
+    "DatumTijd": "2024-10-10T10:00:00",
     "TableCode": "6A",
     "Notitie": "Bloki riba Bloki"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-12-12T12:00:00",
+    "TableCode": "2C",
+    "Notitie": "Hopi hamber"
   }
 ]
