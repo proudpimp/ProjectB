@@ -618,6 +618,7 @@ public class Account : IAdjust
             Console.WriteLine("5) Update Account details");
             Console.WriteLine("6) Menu");
             Console.WriteLine("7) Table details");
+            Console.WriteLine("8) View my points");
             Console.WriteLine("8) Logout");
             string choice = Console.ReadLine();
             switch(choice)
@@ -643,7 +644,10 @@ public class Account : IAdjust
                 case "7":
                     TableDetails.Details();
                     break;
-                case "8":
+                case "8": 
+                    Console.WriteLine($"Points: {loggedInAccount.Points}");
+                    break;
+                case "9":
                     Console.WriteLine("You have succesfully logged out.");
                     return;
                 default:
@@ -749,11 +753,19 @@ public class Account : IAdjust
             Console.WriteLine("No reservations found for the current user.");
         }
         
+        
+    }
+
+    public static void AddPointsToAccount(TafelReserveringForAcc tafelreservering)
+    {
+        // Account loggedinaccount = GetAccount(account.Emailadress);
+        int PointsToAdd = TafelReserveringForAcc.CalculatePoints(tafelreservering);
+        loggedInAccount.Points += PointsToAdd;
+
+
 
         
 
-
-        
     }
 
 }

@@ -6,4 +6,13 @@ public class TafelReserveringForAcc : TafelReservering
     {
         this.Email = Email;
     }
+
+    public static int CalculatePoints(TafelReserveringForAcc reservering)
+    {
+        int PointsToAdd = reservering.AantalPersonen * 10;
+
+        return PointsToAdd;
+    }
+    
+    
 }

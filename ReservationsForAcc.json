@@ -62,5 +62,21 @@
     "DatumTijd": "2024-12-12T12:00:00",
     "TableCode": "2C",
     "Notitie": "Hopi hamber"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-11-19T19:00:00",
+    "TableCode": "4D",
+    "Notitie": "Banpaban"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 4,
+    "DatumTijd": "2024-11-11T15:00:00",
+    "TableCode": "4A",
+    "Notitie": "Gluten Free"
   }
 ]

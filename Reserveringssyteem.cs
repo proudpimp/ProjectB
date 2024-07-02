@@ -166,6 +166,7 @@ public static class Reserveringen
         {
             Console.WriteLine("An error occurred while saving the reservation confirmation: " + ex.Message);
         }
+        Account.AddPointsToAccount(nieuweReservering);
         SaveToJson(JsonFilePathForAcc, reserveringenForAcc);
         return true;
     }
