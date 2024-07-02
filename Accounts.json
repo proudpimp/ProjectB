@@ -6,7 +6,8 @@
     "DateOfBirth": "2012-12-12T00:00:00",
     "Postcode": "2222dd",
     "PhoneNumber": "0612345678",
-    "verificationNumber": 4501
+    "verificationNumber": 4501,
+    "Points": 0
   },
   {
     "Name": "Ethan",
@@ -15,6 +16,17 @@
     "DateOfBirth": "1999-12-05T00:00:00",
     "Postcode": "3032CG",
     "PhoneNumber": "0613789260",
-    "verificationNumber": 3230
+    "verificationNumber": 3230,
+    "Points": 60
+  },
+  {
+    "Name": "Yave",
+    "Emailadress": "yavemartino@gmail.com",
+    "Password": "denkrili",
+    "DateOfBirth": "2005-05-05T00:00:00",
+    "Postcode": "5050BB",
+    "PhoneNumber": "0612345678",
+    "verificationNumber": 8989,
+    "Points": 80
   }
 ]

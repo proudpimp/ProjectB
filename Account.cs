@@ -619,7 +619,7 @@ public class Account : IAdjust
             Console.WriteLine("6) Menu");
             Console.WriteLine("7) Table details");
             Console.WriteLine("8) View my points");
-            Console.WriteLine("8) Logout");
+            Console.WriteLine("9) Logout");
             string choice = Console.ReadLine();
             switch(choice)
             {
@@ -628,6 +628,7 @@ public class Account : IAdjust
                     break;
                 case "2":
                     Account.MakeReservationForAcc();
+                    // Account.GiveDiscount(account);
                     break;
                 case "3":
                     Account.Cancel();
@@ -761,11 +762,22 @@ public class Account : IAdjust
         // Account loggedinaccount = GetAccount(account.Emailadress);
         int PointsToAdd = TafelReserveringForAcc.CalculatePoints(tafelreservering);
         loggedInAccount.Points += PointsToAdd;
+        Account.SaveAccountInformationToJson();
 
 
 
-        
+
 
     }
+
+    // public static void GiveDiscount(Account loggedinaccount)
+    // {
+    //     if (loggedinaccount.Points == 100)
+    //     {
+    //         Console.WriteLine("You have received a discount voucher of 10 euro's."); 
+    //     }
+    // }
+
+    //moet nog verder verwerkt worden
 
 }
