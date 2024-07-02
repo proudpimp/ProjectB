@@ -110,5 +110,21 @@
     "DatumTijd": "2024-09-09T19:00:00",
     "TableCode": "2D",
     "Notitie": "sese"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-10-12T14:00:00",
+    "TableCode": "2E",
+    "Notitie": "Chimichuri"
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 2,
+    "DatumTijd": "2024-12-24T20:00:00",
+    "TableCode": "2H",
+    "Notitie": "Noche Buena"
   }
 ]

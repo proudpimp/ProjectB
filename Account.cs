@@ -628,7 +628,7 @@ public class Account : IAdjust
                     break;
                 case "2":
                     Account.MakeReservationForAcc();
-                    // Account.GiveDiscount(account);
+                    Account.GiveDiscount(account);
                     break;
                 case "3":
                     Account.Cancel();
@@ -770,13 +770,15 @@ public class Account : IAdjust
 
     }
 
-    // public static void GiveDiscount(Account loggedinaccount)
-    // {
-    //     if (loggedinaccount.Points == 100)
-    //     {
-    //         Console.WriteLine("You have received a discount voucher of 10 euro's."); 
-    //     }
-    // }
+    public static void GiveDiscount(Account loggedinaccount)
+    {
+        if (loggedinaccount.Points == 100)
+        {
+            Console.WriteLine("You have received a discount voucher of 10 euro's.");
+                Guid  kortingscode = Guid.NewGuid();
+                Console.WriteLine($"Here's your discount code: {kortingscode}");
+        }
+    }
 
     //moet nog verder verwerkt worden
 
