@@ -759,7 +759,7 @@ public class Account : IAdjust
 
     public static void AddPointsToAccount(TafelReserveringForAcc tafelreservering)
     {
-        // Account loggedinaccount = GetAccount(account.Emailadress);
+       
         int PointsToAdd = TafelReserveringForAcc.CalculatePoints(tafelreservering);
         loggedInAccount.Points += PointsToAdd;
         Account.SaveAccountInformationToJson();
@@ -769,17 +769,26 @@ public class Account : IAdjust
 
 
     }
+    public static void GiveDiscount(Account loggedInAccount)
+{
+    int discountThreshold = 100;
+    
+  
+    int initialPoints = loggedInAccount.Points;
+    int discountsToGive = initialPoints / discountThreshold;
 
-    public static void GiveDiscount(Account loggedinaccount)
+    if (discountsToGive > 0)
     {
-        if (loggedinaccount.Points == 100)
+        for (int i = 0; i < discountsToGive; i++)
         {
-            Console.WriteLine("You have received a discount voucher of 10 euro's.");
-                Guid  kortingscode = Guid.NewGuid();
-                Console.WriteLine($"Here's your discount code: {kortingscode}");
+            Console.WriteLine("You have received a discount voucher of 10%.");
+            Guid kortingscode = Guid.NewGuid();
+            Console.WriteLine($"Here's your discount code: {kortingscode}");
         }
-    }
 
-    //moet nog verder verwerkt worden
+        loggedInAccount.Points -= discountsToGive * discountThreshold;
+        SaveAccountInformationToJson();
+    }
+}
 
 }

@@ -17,7 +17,7 @@
     "Postcode": "3032CG",
     "PhoneNumber": "0613789260",
     "verificationNumber": 3230,
-    "Points": 100
+    "Points": 20
   },
   {
     "Name": "Yave",
@@ -27,6 +27,6 @@
     "Postcode": "5050BB",
     "PhoneNumber": "0612345678",
     "verificationNumber": 8989,
-    "Points": 80
+    "Points": 140
   }
 ]
