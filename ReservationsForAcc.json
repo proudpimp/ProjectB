@@ -278,5 +278,21 @@
     "DatumTijd": "2024-10-17T17:00:00",
     "TableCode": "4B",
     "Notitie": ""
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-12-10T18:00:00",
+    "TableCode": "6A",
+    "Notitie": ""
+  },
+  {
+    "Email": "ethanmeulens533@gmail.com",
+    "GastNaam": "Ethan",
+    "AantalPersonen": 6,
+    "DatumTijd": "2024-12-05T18:00:00",
+    "TableCode": "6A",
+    "Notitie": "Birthday Dinner"
   }
 ]

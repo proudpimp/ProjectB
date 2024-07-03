@@ -11,16 +11,9 @@ public static class Reserveringen
     {
         get
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "GitHub", "ProjectB", "Reservations.json");
-            }
-            else
-            {
+           
                 return "./Reservations.json";
-            }
+           
         }
     }
 
@@ -28,16 +21,9 @@ public static class Reserveringen
     {
         get
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "GitHub", "ProjectB", "ReservationsForAcc.json");
-            }
-            else
-            {
+           
                 return "./ReservationsForAcc.json";
-            }
+          
         }
     }
 

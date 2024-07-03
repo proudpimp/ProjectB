@@ -12,16 +12,9 @@ public class Account : IAdjust
     {
         get
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "GitHub", "ProjectB", "Accounts.json");
-            }
-            else
-            {
+            
                 return "./Accounts.json";
-            }
+         
         }
     }
     public string Name {get;set;}
@@ -781,9 +774,13 @@ public class Account : IAdjust
     {
         for (int i = 0; i < discountsToGive; i++)
         {
+            Console.WriteLine("\n");
             Console.WriteLine("You have received a discount voucher of 10%.");
             Guid kortingscode = Guid.NewGuid();
             Console.WriteLine($"Here's your discount code: {kortingscode}");
+            Console.WriteLine("\n");
+
+            
         }
 
         loggedInAccount.Points -= discountsToGive * discountThreshold;
